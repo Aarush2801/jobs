@@ -1,0 +1,635 @@
+{
+  "111": {
+    "nco_code": "111",
+    "exposure": 3,
+    "rationale": "Senior government officials and legislators engage primarily in high-stakes decision-making, policy governance, political negotiation, and public representation that require human authority and trust. AI tools can assist in summarizing complex policy documents, drafting speeches, and synthesizing public feedback or data reports. However, the core responsibilities of leadership, political strategy, and legislative judgment remain fundamentally human-driven."
+  },
+  "112": {
+    "nco_code": "112",
+    "exposure": 4,
+    "rationale": "Managing directors and working proprietors deal extensively with high-level decision-making, human negotiation, operational management, and strategic leadership. While AI tools augment administrative work, financial planning, and market analysis for formal corporate leaders, over 95% of workers in this group in India are self-employed working proprietors running informal businesses with low digital infrastructure. Consequently, while AI offers analytical support for formal executives, the overall day-to-day operational tasks for the majority in this group remain largely human-driven."
+  },
+  "121": {
+    "nco_code": "121",
+    "exposure": 7,
+    "rationale": "Business services and administration managers perform desk-heavy work involving financial analysis, policy formulation, personnel management, and reporting, all of which are significantly reshaped by modern AI tools. Given the relatively high median earnings of INR 40,000, investing in AI productivity software is economically attractive for formal and growing enterprises in India. However, human judgment, leadership, stakeholder negotiation, and strategic oversight remain essential, moderating total exposure."
+  },
+  "122": {
+    "nco_code": "122",
+    "exposure": 7,
+    "rationale": "Sales, marketing, and advertising managers operate predominantly in formal corporate environments with robust digital infrastructure and relatively high wages. Generative AI tools and predictive analytics significantly reshape core tasks like market research, ad copywriting, campaign optimization, and sales forecasting. While high-level strategic decision-making, client negotiations, and team leadership remain human-driven, daily analytical and content creation workflows are heavily augmented by AI."
+  },
+  "131": {
+    "nco_code": "131",
+    "exposure": 3,
+    "rationale": "Production managers in agriculture, forestry, and fisheries oversee on-site physical operations, livestock health, labor management, and harvest logistics, which require a strong in-person presence. While AI applications like precision agriculture software, yield forecasting, and automated weather monitoring can assist in planning and operational decisions, high informality and the physical nature of farm management limit broader AI transformation. As a result, AI marginally reshapes administrative and data-driven tasks while leaving daily supervisory field work largely unaffected."
+  },
+  "132": {
+    "nco_code": "132",
+    "exposure": 5,
+    "rationale": "With a high proportion of regular wage employment (73.1%) and relatively high median earnings (INR 40,000), enterprise AI adoption for operational planning, supply chain optimization, resource allocation, and reporting is viable in this sector. AI tools increasingly augment management tasks such as predictive maintenance scheduling, logistics tracking, and compliance management. However, significant aspects of these roles require on-site physical inspection, real-time crisis intervention, and direct supervision of field or shop-floor personnel, which limits overall AI exposure."
+  },
+  "133": {
+    "nco_code": "133",
+    "exposure": 7,
+    "rationale": "ICT services managers operate in a fully digital, highly formal work environment (87.9% regular employment) with high relative wages, making AI adoption economically and technically feasible. Generative AI and automated IT service management tools significantly reshape core tasks like service delivery planning, contract analysis, incident monitoring, and performance reporting. While high-level strategic decision-making and personnel management remain human-driven, AI tools substantially modify daily management workflows."
+  },
+  "134": {
+    "nco_code": "134",
+    "exposure": 6,
+    "rationale": "Professional services managers in India operate predominantly within formal enterprises with relatively high median earnings, providing the necessary digital infrastructure and economic incentive for AI integration. AI tools increasingly reshape tasks like administrative reporting, compliance tracking, financial analysis, and resource planning. However, core responsibilities involving personal leadership, regulatory accountability, stakeholder negotiations, and complex decision-making limit the degree of task transformation."
+  },
+  "141": {
+    "nco_code": "141",
+    "exposure": 4,
+    "rationale": "Hotel and restaurant managers spend a substantial portion of their time on physical facility supervision, face-to-face guest interactions, and real-time staff management, which require human presence. However, current AI tools increasingly reshape background management duties such as demand forecasting, dynamic pricing, automated reservation handling, inventory control, and customer feedback analysis. While digital adoption is growing in urban hospitality, the core on-ground operational and interpersonal tasks limit overall AI transformation."
+  },
+  "142": {
+    "nco_code": "142",
+    "exposure": 3,
+    "rationale": "Retail and wholesale trade managers in India are predominantly self-employed operators of informal enterprises (71.3% informality), where daily work centers on physical store oversight, localized supplier negotiations, and direct customer interactions. While AI tools are beginning to optimize inventory management, demand forecasting, and logistics for managers in organized corporate retail and export businesses, the vast majority of small-scale trade managers have limited digital infrastructure to leverage AI. Consequently, current AI reshapes only a minor fraction of tasks across the occupation group as a whole."
+  },
+  "143": {
+    "nco_code": "143",
+    "exposure": 4,
+    "rationale": "Managers of sports, recreation, and cultural facilities spend significant time on administrative tasks such as scheduling, budgeting, vendor management, and event planning, where AI tools can assist with optimization and communication. However, a major part of the role involves physical on-site facility supervision, staff leadership, and direct human interaction during events. Given the high share of regular formal employment and decent wage levels, digital management tools are adopted, but core operational duties remain largely human-driven."
+  },
+  "211": {
+    "nco_code": "211",
+    "exposure": 6,
+    "rationale": "Physical and earth science professionals operate in highly formal settings with strong digital infrastructure and relatively high wages. AI tools significantly reshape their computational work, including weather pattern forecasting, seismic data processing, chemical modeling, and automated quality control reporting. However, physical laboratory synthesis, sample collection, and field geology tasks still require direct human involvement, limiting full automation."
+  },
+  "212": {
+    "nco_code": "212",
+    "exposure": 8,
+    "rationale": "With near-total formal employment (99.4% regular workers) and a digital-first work environment, this group is highly receptive to AI adoption in India. AI tools, including advanced coding assistants and predictive analytics models, heavily reshape core tasks such as statistical modeling, actuarial calculations, data manipulation, and report drafting. While complex mathematical problem-formulation and strategic decision-making still require human oversight, the daily workflows are significantly transformed."
+  },
+  "213": {
+    "nco_code": "213",
+    "exposure": 5,
+    "rationale": "Life science professionals combine physical field sampling and laboratory experimentation with data analysis, report writing, and research. AI tools increasingly assist in biological data analysis, image-based pest/pathogen identification, and environmental impact modeling. However, the necessity for direct field inspections, hands-on lab work, and physical sample collection keeps a significant portion of the work grounded in manual effort."
+  },
+  "214": {
+    "nco_code": "214",
+    "exposure": 6,
+    "rationale": "With over 94% regular employment and high median earnings, engineering professionals in India have strong organizational infrastructure to integrate AI tools into their workflows. AI is substantially reshaping desk-based tasks such as generative design, CAD drafting, structural estimations, production scheduling, and compliance documentation. However, overall exposure is moderated because critical responsibilities—such as physical site inspections, quality audits, material testing, and field project management—still require direct human presence."
+  },
+  "215": {
+    "nco_code": "215",
+    "exposure": 6,
+    "rationale": "Electro-technology engineers operate almost entirely within the formal sector with robust digital infrastructure and relatively high wages, enabling rapid AI adoption. Generative AI and machine learning tools are significantly altering core desk-based tasks such as electronic design automation (EDA), HDL code generation, PCB layout optimization, and simulation analysis. However, hands-on tasks like physical hardware prototyping, laboratory testing, and field troubleshooting ensure that human engineers remain central to the workflow."
+  },
+  "216": {
+    "nco_code": "216",
+    "exposure": 7,
+    "rationale": "This group consists mostly of desk-bound digital design, architecture, animation, and cartography workers who heavily utilize digital software. Modern AI tools, including generative image, 3D, and CAD generation technologies, are rapidly reshaping tasks like drafting, rendering, graphic design, and storyboarding. While on-site surveying and physical client consultations remain human-led, the relatively high share of formal, regular employment and above-average earnings accelerate AI integration across most occupations in this group."
+  },
+  "221": {
+    "nco_code": "221",
+    "exposure": 3,
+    "rationale": "Medical doctors in India spend a large portion of their time on direct patient interactions, physical examinations, and surgical procedures that require in-person, hands-on care. While AI is increasingly adopted for diagnostic assistance in specialized areas like radiology and pathology, as well as for clinical documentation, core treatment and surgical tasks remain strictly human-driven. High earnings enable access to advanced AI diagnostic tools, but legal accountability and physical intervention keep overall work exposure limited."
+  },
+  "222": {
+    "nco_code": "222",
+    "exposure": 3,
+    "rationale": "Nursing and midwifery professionals primarily provide direct, hands-on patient care, physical assistance, and clinical procedures that require physical presence and human empathy. While AI tools can assist with clinical decision support, administrative documentation, and patient monitoring in formal hospital settings, the vast majority of physical and caregiving duties remain unchanged. Consequently, current AI has a low overall impact on reshaping this hands-on medical profession."
+  },
+  "223": {
+    "nco_code": "223",
+    "exposure": 3,
+    "rationale": "Traditional and complementary medicine professionals conduct in-person consultations, physical examinations, and individualized patient assessments that depend heavily on direct human interaction and clinical judgment. While AI can assist with symptom checking, retrieving traditional medical literature, and managing patient records, it cannot replace physical diagnosis or the trust required in practitioner-patient relationships. High rates of self-employment and informal private practices across India further limit rapid technological adoption in this field."
+  },
+  "224": {
+    "nco_code": "224",
+    "exposure": 2,
+    "rationale": "Paramedical practitioners perform predominantly hands-on physical and emergency clinical care, such as dressing wounds and administering immediate patient care, which cannot be replaced or significantly reshaped by AI. While AI may offer minor decision-support or diagnostic assistance in laboratory settings, the core duties remain deeply physical and in-person. Additionally, moderate wages and significant informal employment constrain the rapid adoption of sophisticated AI tools in everyday practice."
+  },
+  "225": {
+    "nco_code": "225",
+    "exposure": 2,
+    "rationale": "Veterinary work in India predominantly involves physical hands-on clinical examinations, surgeries, and field visits to livestock and pets. While AI can support specialized sub-tasks like diagnostic image interpretation, animal pathology analysis, and genetic research, the core physical and interventional duties remain entirely human-led. High rates of self-employment and field-based practice further limit immediate technological restructuring of daily routines."
+  },
+  "226": {
+    "nco_code": "226",
+    "exposure": 3,
+    "rationale": "A large share of occupations in this group—such as dentists, physiotherapists, speech therapists, and optometrists—require direct physical, in-person clinical procedures and manual dexterity that AI cannot replicate. However, AI tools assist with administrative workflows, diagnostic imaging analysis, and personalized treatment or diet planning for dietitians and health officers. As a result, AI reshapes supplementary analytical and administrative tasks while leaving the core hands-on medical care intact."
+  },
+  "231": {
+    "nco_code": "231",
+    "exposure": 6,
+    "rationale": "Higher education teachers in India operate almost entirely in formal institutions with relatively high wages, providing a strong digital foundation for AI integration. Generative AI significantly alters tasks like lecture preparation, literature reviews, research drafting, and assessment creation. However, the core responsibilities of live classroom instruction, mentorship, lab demonstration, and institutional administration maintain a required human presence."
+  },
+  "232": {
+    "nco_code": "232",
+    "exposure": 4,
+    "rationale": "Vocational education relies heavily on hands-on practical instruction, physical demonstrations, and direct human supervision, which limits full AI automation. However, AI tools increasingly assist teachers in curriculum development, lesson planning, and drafting theoretical assessments. Given the high share of regular employment (83.1%) and formal institutional settings, adoption of AI for administrative and content-preparation tasks is feasible, though practical skill training remains largely human-driven."
+  },
+  "233": {
+    "nco_code": "233",
+    "exposure": 5,
+    "rationale": "Secondary education teachers in India operate in a highly formal sector with relatively strong institutional backing, enabling the adoption of digital and AI tools. Generative AI significantly reshapes preparatory tasks such as lesson planning, quiz generation, personalized learning materials, and grading. However, core duties like classroom management, in-person lectures, practical demonstrations, and student mentorship require physical presence and human interaction, limiting total task transformation."
+  },
+  "234": {
+    "nco_code": "234",
+    "exposure": 3,
+    "rationale": "Primary school and early childhood teachers rely heavily on in-person classroom management, physical supervision, and foundational social-emotional instruction with young children, limiting direct AI integration in core teaching duties. While AI can assist with lesson planning, generating worksheets, and administrative tasks, the primary workload remains centered around face-to-face care and instruction. Consequently, current AI impacts preparation and administrative overhead but reshapes only a modest portion of the overall role."
+  },
+  "235": {
+    "nco_code": "235",
+    "exposure": 4,
+    "rationale": "This group encompasses a diverse set of specialized educators, ranging from arts, crafts, and special needs teachers to IT trainers and curriculum specialists. AI tools increasingly reshape curriculum design, language instruction, and IT training materials, but a large portion of the daily work relies on hands-on, in-person physical instruction and empathetic personal engagement. Furthermore, high informality (60.3%) and modest median wages (INR 7,000) slow the integration of advanced digital tools among independent tutors and craft instructors."
+  },
+  "241": {
+    "nco_code": "241",
+    "exposure": 8,
+    "rationale": "Finance professionals operate overwhelmingly in formal desk environments with established digital infrastructure, earning higher-than-average wages that make software adoption highly cost-effective. AI tools significantly reshape core tasks like auditing, data reconciliation, financial reporting, risk analysis, and forecasting. Although final compliance sign-offs and strategic client advising remain human-driven, AI heavily automates the underlying analytical and data-processing workflows."
+  },
+  "242": {
+    "nco_code": "242",
+    "exposure": 7,
+    "rationale": "Administration professionals in India operate largely within formal corporate settings with high wage levels (median INR 35,000/month), enabling rapid AI technology adoption. Generative AI tools significantly reshape core tasks like research, policy drafting, recruitment screening, and training content generation. While interpersonal aspects such as final hiring decisions, career counseling, and stakeholder management preserve the need for human presence, daily workflows are heavily augmented by AI."
+  },
+  "243": {
+    "nco_code": "243",
+    "exposure": 7,
+    "rationale": "With nearly 90% of workers in regular formal employment and above-average median earnings, this professional group operates in well-digitized corporate environments. Tasks related to advertising copywriting, market research analysis, PR content creation, and digital marketing are heavily reshaped by generative AI tools. While field sales executives and medical representatives retain essential in-person relationship management duties, their pre-sales preparation, outreach communications, and market intelligence work are increasingly transformed by AI."
+  },
+  "251": {
+    "nco_code": "251",
+    "exposure": 9,
+    "rationale": "Software and application development is among the most directly impacted fields by current generative AI tools, which automate and assist with code generation, debugging, testing, and documentation. With a near-total formal employment structure (98.3% regular workers) and high enterprise digital readiness, AI adoption in India's IT sector is exceptionally rapid. While human developers are still needed for high-level architecture and complex decision-making, AI substantially reshapes their daily workflows."
+  },
+  "252": {
+    "nco_code": "252",
+    "exposure": 7,
+    "rationale": "With nearly 90% of workers in regular formal employment and relatively high median earnings, this group has strong digital infrastructure and financial incentive to integrate AI tools. Modern AI substantially reshapes tasks like automated network monitoring, database query optimization, security threat analysis, and configuration scripting. While physical hardware testing and network infrastructure setup require manual intervention, the majority of database and network administration tasks are highly augmented by AI."
+  },
+  "261": {
+    "nco_code": "261",
+    "exposure": 5,
+    "rationale": "Legal professionals in India spend significant time on text-heavy tasks like legal research, contract review, and drafting petitions, which are substantially transformed by generative AI tools. However, the majority of Indian legal practice involves self-employed advocates operating in physical courtrooms, where in-person oral advocacy, client negotiation, and judicial decision-making remain indispensable. Given the high share of independent practitioners and reliance on physical court proceedings, AI reshapes desk-bound research and preparation rather than core courtroom representation."
+  },
+  "262": {
+    "nco_code": "262",
+    "exposure": 6,
+    "rationale": "Much of the core work in this group involves cataloging, metadata management, indexing, document processing, and information retrieval, all of which are significantly reshaped by AI-powered search and text processing tools. However, physical preservation, artifact restoration, hands-on archiving, and managing physical library spaces require manual skill and in-person effort that AI cannot replicate. High institutional formality (88.3% regular wage) supports steady adoption of digital and AI-driven management tools across libraries and archives in India."
+  },
+  "263": {
+    "nco_code": "263",
+    "exposure": 4,
+    "rationale": "This group combines desk-based social science researchers with highly interpersonal professionals like social workers, counsellors, and religious leaders. While economists and academic researchers experience high exposure through AI-assisted research, data analysis, and report generation, field-based social work and religious practices rely heavily on in-person human trust, empathy, and community presence. Given that a large portion of this workforce in India consists of self-employed religious and community workers in informal settings, the overall impact of AI on daily work routines remains moderate to low."
+  },
+  "264": {
+    "nco_code": "264",
+    "exposure": 8,
+    "rationale": "This occupation group consists almost entirely of desk-based tasks focused on language, text creation, editing, and translation, which are primary capabilities of modern generative AI. With a high share of regular salaried workers and relatively high median earnings, media companies, tech firms, and publishing houses in India are rapidly integrating AI for drafting, localization, research, and copy editing. While original reporting and creative storytelling remain uniquely human, day-to-day writing and translation workflows are substantially reshaped."
+  },
+  "265": {
+    "nco_code": "265",
+    "exposure": 4,
+    "rationale": "This group comprises a wide mix of digital/studio creators and live performing artists. Generative AI tools significantly reshape tasks in visual art, cartooning, music composition, and voiceover production through AI image, audio, and script generation. However, a large segment of this workforce in India consists of live performers, dancers, actors, and traditional artists whose physical, in-person work remains largely unaffected."
+  },
+  "311": {
+    "nco_code": "311",
+    "exposure": 4,
+    "rationale": "This group exhibits very high formal employment (95.9% regular) and above-average median earnings, providing the digital infrastructure for AI adoption. AI tools significantly alter tasks related to CAD drafting, computer vision inspection, testing data analysis, and predictive maintenance diagnostics. However, a major portion of the work remains inherently physical and on-site, including manual laboratory testing, equipment repair, field surveying, and physical installations."
+  },
+  "312": {
+    "nco_code": "312",
+    "exposure": 3,
+    "rationale": "Supervisors in mining, manufacturing, and construction spend the majority of their time on-site directly managing workers, ensuring safety compliance, and overseeing physical shop-floor operations. While AI tools can assist with digital reporting, shift scheduling, and computer-vision quality checks, the core responsibilities require physical presence and human intervention. Although high formal employment facilitates some software adoption, the inherently location-bound and interpersonal nature of site supervision limits AI exposure."
+  },
+  "313": {
+    "nco_code": "313",
+    "exposure": 4,
+    "rationale": "Process control technicians operate in highly formal industrial environments like refineries, chemical plants, and power stations where digital control systems are common. AI enhances their work through predictive maintenance algorithms, automated process optimization, and intelligent monitoring/alert systems in control rooms. However, a significant portion of daily duties involves physical inspection, manual equipment adjustments, and direct mechanical maintenance, which keeps AI exposure moderate."
+  },
+  "314": {
+    "nco_code": "314",
+    "exposure": 3,
+    "rationale": "Workers in this group primarily perform hands-on physical tasks such as preparing biological specimens, setting up lab equipment, field sampling, and installing micro-irrigation systems. While high formality (98.6% regular wage) enables digital tool adoption, current AI mainly impacts secondary tasks like data logging, image-based plant or pest identification, and basic report generation. The core physical and laboratory-based manual work remains largely unautomated."
+  },
+  "315": {
+    "nco_code": "315",
+    "exposure": 3,
+    "rationale": "High formality and high median earnings (INR 90,000) in this sector encourage the integration of advanced digital tools such as AI-assisted flight planning, trajectory optimization, and predictive maintenance diagnostics. However, the core work consists of safety-critical physical operation, real-time navigation, and command responsibility that strictly require human presence and regulatory oversight. As a result, AI serves primarily as a supportive decision-making tool, moderately altering specific diagnostic and planning workflows rather than transforming primary operational duties."
+  },
+  "321": {
+    "nco_code": "321",
+    "exposure": 3,
+    "rationale": "Medical and pharmaceutical technicians operate primarily in formal healthcare settings with a high share of regular employment (88.7%), enabling the adoption of AI-assisted diagnostic software, quality control tools, and inventory automation. However, the core responsibilities remain heavily physical and hands-on, such as collecting blood samples, positioning patients for imaging, operating dialysis and OT equipment, and dispensing medications. Consequently, AI assists in analysis and administrative tasks but reshapes only a modest portion of the overall physical workflow."
+  },
+  "322": {
+    "nco_code": "322",
+    "exposure": 1,
+    "rationale": "Nursing and midwifery associate professionals perform direct, hands-on physical care, bedside assistance, clinical procedures, and community health visits that cannot be automated by current AI. While AI may assist with basic record-keeping, triage advice, or clinical decision support tools, the core responsibilities remain entirely physical and interpersonal. Additionally, relatively low prevailing wages limit the economic viability of advanced automated health technologies."
+  },
+  "323": {
+    "nco_code": "323",
+    "exposure": 2,
+    "rationale": "Traditional and complementary medicine associate professionals primarily perform hands-on patient consultations, physical examinations, and manual or herbal therapy applications. While AI can offer basic support in symptom lookup, documentation, and preliminary diagnostic suggestion, the core tasks require direct physical interaction and tactile assessment. Low median earnings and a substantial self-employed workforce further limit the speed of AI adoption in this field."
+  },
+  "324": {
+    "nco_code": "324",
+    "exposure": 2,
+    "rationale": "Veterinary technicians and assistants primarily perform hands-on, physical tasks such as restraining animals, administering vaccinations, and maintaining animal care facilities. While AI tools can assist with diagnostic imaging or administrative record-keeping in advanced clinical settings, the core duties rely on direct physical interaction with animals. Consequently, the daily work of these workers in India remains largely unexposed to AI-driven reshaping."
+  },
+  "325": {
+    "nco_code": "325",
+    "exposure": 3,
+    "rationale": "Most occupations within this group involve direct, in-person patient care, physical assistance, or field inspections, such as assisting in dental or physiotherapy procedures, fitting eyewear, and conducting health visits. While AI influences specialized sub-tasks like medical records processing and AI-assisted screening diagnostics, the dominant daily tasks remain hands-on and interpersonal. As a result, AI modestly impacts administrative and decision-support aspects without altering the primary physical responsibilities."
+  },
+  "331": {
+    "nco_code": "331",
+    "exposure": 7,
+    "rationale": "Financial and mathematical associate professionals perform primarily desk-based work involving data processing, credit risk assessment, financial calculations, and statistical analysis. With a high proportion of regular formal employment (72.7%) and relatively higher median earnings, there is strong digital infrastructure and economic incentive to integrate AI tools for automated underwriting, data analytics, and algorithmic trading. While some roles require field visits or client-facing interactions, such as physical property valuation, the core analytical and documentation tasks are substantially reshaped by current AI technologies."
+  },
+  "332": {
+    "nco_code": "332",
+    "exposure": 4,
+    "rationale": "Occupations in this group, such as sales representatives, insurance agents, and buyers, involve significant administrative, lead generation, and customer communication tasks that are increasingly augmented by AI-driven CRM tools, chatbots, and automated analytics. However, much of the core work in India relies heavily on field visits, direct interpersonal persuasion, trust-building, and local negotiation. High informality (58.7%) and self-employment (58.1%) among individual agents and brokers further moderate the overall speed and depth of AI adoption."
+  },
+  "333": {
+    "nco_code": "333",
+    "exposure": 4,
+    "rationale": "This group includes real estate agents, clearing agents, and call center executives, which have a mix of digital coordination and physical, in-person tasks. While AI heavily impacts call center operations, document processing, and matchmaking algorithms, the vast majority of workers in India are self-employed property dealers and local agents (78.4% informal) who rely on physical site visits, face-to-face negotiations, and local offline networks. Consequently, AI reshapes digital workflows and customer support tasks but has a moderate overall impact on the primary daily activities of the broader group."
+  },
+  "334": {
+    "nco_code": "334",
+    "exposure": 7,
+    "rationale": "With an extremely high formal employment share (95.9% regular workers) and relatively high median earnings of INR 30,000, workers in this group operate in structured, digitized office environments. AI tools significantly reshape core tasks like drafting administrative correspondence, processing legal and medical documentation, and organizing office workflows. While direct interpersonal coordination and supervisory oversight remain human, the heavy reliance on text, scheduling, and routine document management drives substantial exposure."
+  },
+  "335": {
+    "nco_code": "335",
+    "exposure": 4,
+    "rationale": "High formalization (99.2% regular wage) and relatively high earnings enable the adoption of digital tools and AI analytics for document processing, tax auditing, and licensing verification in Indian government departments. However, a large share of workers in this group are police inspectors, detectives, and customs officers whose primary duties rely heavily on physical presence, field investigations, and manual law enforcement. Consequently, while back-office administrative and investigative analytics are reshaped by AI, the core field-based responsibilities remain largely human-driven."
+  },
+  "341": {
+    "nco_code": "341",
+    "exposure": 3,
+    "rationale": "This minor group combines legal associate professionals, social work associates, and religious workers. While tasks like petition writing and legal document preparation are moderately exposed to AI text generation and drafting tools, social and religious roles rely predominantly on physical presence, empathy, and manual or ritualistic activities. Additionally, nearly half of the workforce operates informally with paper-based workflows in local courts and field settings, limiting widespread digital AI integration."
+  },
+  "342": {
+    "nco_code": "342",
+    "exposure": 2,
+    "rationale": "Sports and fitness workers engage primarily in physical, in-person activities such as competing in sports, coaching, fitness instruction, officiating, and physical safety monitoring. While AI tools and computer vision are increasingly utilized for performance analytics, video review, and designing workout routines, the core execution of these roles remains inherently physical and human-centered. As a result, current AI technologies have a very limited impact on reshaping the everyday tasks of this group in India."
+  },
+  "351": {
+    "nco_code": "351",
+    "exposure": 8,
+    "rationale": "This group consists primarily of formal, desk-based technical support, transcription, DTP, and IT operations roles operating within highly digitized workplaces (82.8% regular employment). Generative AI and automated support tools directly reshape core tasks like first-tier IT troubleshooting, medical transcription, routine system monitoring, and basic programming assistance. High digital readiness and organized enterprise environments make AI integration economically viable and swift in these occupations."
+  },
+  "352": {
+    "nco_code": "352",
+    "exposure": 5,
+    "rationale": "This group combines digital media processing tasks with physical equipment operation and field maintenance. AI software heavily impacts audio/video editing, automated signal monitoring, and media production workflows. However, physical tasks such as operating cameras, installing audio-visual gear, and conducting telecommunication line inspections require hands-on technical work that AI cannot replace."
+  },
+  "411": {
+    "nco_code": "411",
+    "exposure": 8,
+    "rationale": "General office clerks work almost entirely in formal environments (98.9% regular status) with existing digital infrastructure, making AI integration highly viable. Core tasks such as handling enquiries, proofreading, record-keeping, and time-tracking involve text and data processing that current generative AI and automation tools easily streamline. While some physical office management tasks remain human-led, AI substantially reshapes the daily routines of this occupation."
+  },
+  "412": {
+    "nco_code": "412",
+    "exposure": 7,
+    "rationale": "Secretaries in India operate entirely within formal, regular employment with relatively high median earnings, creating strong conditions for digital tool adoption. Generative AI significantly reshapes core secretarial tasks such as drafting correspondence, managing schedules, taking meeting minutes, and organizing documentation. While roles like Panchayat Secretary retain some in-person administrative and public-facing duties, the desk-bound text and data processing elements of the work are highly exposed to AI integration."
+  },
+  "413": {
+    "nco_code": "413",
+    "exposure": 8,
+    "rationale": "Keyboard operators spend the majority of their time on desk-based tasks involving text, numbers, and structured data entry, which are heavily reshaped by modern AI technologies like OCR, intelligent document processing, and generative text tools. The workforce is predominantly in regular, formal employment (around 80%), providing the necessary digital infrastructure for rapid technology adoption in enterprises. Although relatively low wages in India slow complete labor replacement, AI tools significantly alter the core workflow and daily tasks of data entry and word processing personnel."
+  },
+  "421": {
+    "nco_code": "421",
+    "exposure": 6,
+    "rationale": "This group features a very high proportion of regular, formal employment (89.7%) with low informality, providing the digital infrastructure necessary for rapid technology adoption. Current AI tools and automation significantly reshape tasks such as transaction logging, ledger reconciliation, automated debt recovery communications (like AI voicebots and automated reminders), and customer verification. However, the physical aspects of handling cash, evaluating collateral in pawn shops, and in-person field collection limit complete transformation."
+  },
+  "422": {
+    "nco_code": "422",
+    "exposure": 7,
+    "rationale": "Client information workers engage primarily in communication, query handling, booking management, and routine customer support—tasks directly impacted by conversational AI, automated voice agents, and chatbots. Because this group has an overwhelmingly formal workforce (93.1% regular salaried) operating in digitally structured environments, adoption barriers are low despite modest wages. However, physical in-person responsibilities for hotel receptionists and front-desk hosts prevent complete task automation across the entire group."
+  },
+  "431": {
+    "nco_code": "431",
+    "exposure": 8,
+    "rationale": "Numerical clerks perform structured desk work centered on text, numbers, and spreadsheets, which is highly vulnerable to modern AI tools that automate data extraction, reconciliation, and financial report generation. With over 96% of these workers in formal, regular employment, there is existing digital infrastructure (e.g., accounting software and ERPs) that facilitates swift AI integration. Although human oversight is still required for complex auditing and statutory compliance, AI substantially reshapes the daily tasks of bookkeeping, payroll processing, and ledger maintenance."
+  },
+  "432": {
+    "nco_code": "432",
+    "exposure": 5,
+    "rationale": "With 96% of workers in regular formal employment, this group operates within structured digital environments like Warehouse Management Systems (WMS) and ERPs. AI tools increasingly streamline tasks such as demand forecasting, automated stock reconciliation, shipment tracking, and logistics scheduling. However, the score remains moderate because manual stock counting, physical store inspections, and localized transport coordination still demand direct human involvement."
+  },
+  "441": {
+    "nco_code": "441",
+    "exposure": 5,
+    "rationale": "This group comprises a diverse mix of desk-based and physical clerical roles in India, with high formal employment (98.3% regular workers) facilitating software adoption. Tasks in proofreading, personnel clerking, document indexing, and coding are heavily reshaped by AI-driven text processing and workflow automation tools. However, a significant portion of the workforce consists of postmen, peons (office boys), daftries, and field staff whose daily duties involve physical file movement, local delivery, and in-person interactions that remain unaffected by AI."
+  },
+  "511": {
+    "nco_code": "511",
+    "exposure": 2,
+    "rationale": "Minor group 511 comprises roles such as bus conductors, flight stewards, train ticket examiners, and tourist guides whose core functions require physical presence, manual assistance, in-person communication, and safety enforcement. While AI and digital tools influence background processes like travel planning, ticketing algorithms, and payment verification, they leave the primary, physical on-board and on-site duties largely unchanged."
+  },
+  "512": {
+    "nco_code": "512",
+    "exposure": 1,
+    "rationale": "Cooks perform predominantly physical, manual, and in-person tasks involving food preparation, cooking, and kitchen maintenance. Current AI technologies cannot perform physical culinary work, and the low median monthly earnings make physical robotic automation economically unviable in India. Minor AI exposure is limited to digital recipe suggestions or inventory management in formal institutional kitchens, leaving the core daily work largely unaffected."
+  },
+  "513": {
+    "nco_code": "513",
+    "exposure": 1,
+    "rationale": "Waiters and bartenders primarily perform physical, in-person tasks such as serving food and drinks, interacting with customers, and setting up tables. While digital ordering systems or QR menus are used in some modern dining establishments, the core service delivery remains manual and human-driven. Low prevailing wages in India make physical automation technologies financially impractical for the vast majority of food and beverage outlets."
+  },
+  "514": {
+    "nco_code": "514",
+    "exposure": 1,
+    "rationale": "Hairdressing, beauty treatments, and grooming rely on direct, hands-on physical contact and manual dexterity that current AI cannot perform or automate. The occupation in India is highly informal (81.3%) and predominantly self-employed, operating at low median earnings with minimal digital integration. While AI may offer minor auxiliary tools for virtual style previews or booking management, the core daily tasks remain virtually unaffected."
+  },
+  "515": {
+    "nco_code": "515",
+    "exposure": 2,
+    "rationale": "Occupations in this group primarily involve physical, in-person tasks such as supervising cleaning staff, managing building maintenance, and domestic housekeeping. Low median wages and high informal employment further disincentivize digital or AI-driven automation. AI has minimal impact on these roles, limited mostly to basic scheduling or inventory tracking in larger formal hotels."
+  },
+  "516": {
+    "nco_code": "516",
+    "exposure": 2,
+    "rationale": "The majority of occupations in this group, such as driving instructors, undertakers, embalmers, and pet care workers, involve direct physical, in-person, or manual tasks that AI cannot reshape. While astrologers and fortune tellers face some exposure through AI-driven horoscope generation and chatbots, the human-centric and interpersonal nature of consulting limits overall impact. Additionally, low median earnings and high informal arrangements reduce the incentive to adopt AI technologies in these personal services."
+  },
+  "521": {
+    "nco_code": "521",
+    "exposure": 1,
+    "rationale": "Street and market salespersons operate almost entirely in the physical and informal economy, with 92.9% informality and 92.0% self-employment. The daily work involves manual labor, in-person customer interaction, physical inventory management, and street food preparation, none of which rely on digital infrastructure. As a result, current AI technologies have virtually no impact on how these jobs are performed in India."
+  },
+  "522": {
+    "nco_code": "522",
+    "exposure": 2,
+    "rationale": "Shop salespersons in India primarily perform physical, in-person tasks such as attending to customers, managing physical inventory, and handling cash transactions. High informality (76.6%) and self-employment (75.9%) in small unorganized retail (kirana stores) mean there is minimal digital infrastructure for AI tools to integrate with. While larger retail chains may adopt basic AI for inventory management and customer analytics, low local wages and the face-to-face nature of retail sales keep overall AI exposure low."
+  },
+  "523": {
+    "nco_code": "523",
+    "exposure": 7,
+    "rationale": "With a high share of regular formal employment (89.1%) and low informality (10.9%), cashiers and ticket clerks operate in environments with established digital infrastructure. The widespread adoption of UPI, automated ticketing systems (such as FASTag and metro vending machines), and AI-integrated point-of-sale software is heavily reshaping daily tasks like transaction processing and cash reconciliation. While physical customer service and manual cash handling remain, AI and digital tools are significantly altering how these occupations operate."
+  },
+  "524": {
+    "nco_code": "524",
+    "exposure": 4,
+    "rationale": "This group comprises a mix of contact centre sales personnel and physical sales or service attendants, such as petrol pump salesmen and counter attendants. While AI is significantly reshaping contact centre and tele-sales roles through generative voice agents, automated script generation, and CRM tools, physical and in-person sales workers face minimal exposure due to low wages and the inherently manual nature of their tasks."
+  },
+  "531": {
+    "nco_code": "531",
+    "exposure": 1,
+    "rationale": "Child care workers and teachers' aides perform inherently physical, hands-on, and interpersonal tasks such as supervising, feeding, and assisting children in person. Current AI technologies cannot execute physical caregiving or classroom supervision duties. Consequently, despite a high share of regular employment in institutions, AI has negligible impact on how this work is conducted in India."
+  },
+  "532": {
+    "nco_code": "532",
+    "exposure": 1,
+    "rationale": "Occupations in this group, such as home health aides and general duty assistants, primarily involve physical, hands-on, and in-person caregiving tasks like assisting patients with daily living activities. AI technology has minimal ability to perform or reshape physical bedside care and direct personal assistance. Consequently, the core day-to-day responsibilities of these health service workers remain largely unaffected by AI."
+  },
+  "541": {
+    "nco_code": "541",
+    "exposure": 2,
+    "rationale": "Protective service workers primarily engage in physical, in-person duties such as patrolling, guarding physical assets, maintaining public order, and responding to emergencies. While AI-driven technologies like video analytics and automated surveillance systems are increasingly used by security supervisors and police departments, the vast majority of jobs in this group—such as watchmen, security guards, and constables—require physical presence and human intervention. Given the low average wages for security personnel in India, physical manual guarding remains far more cost-effective than deploying advanced robotic or automated hardware."
+  },
+  "611": {
+    "nco_code": "611",
+    "exposure": 1,
+    "rationale": "Market gardeners and crop growers perform overwhelmingly manual, physical, and location-bound outdoor tasks such as planting, pruning, weeding, and harvesting. With an informality rate of 99.4% and low median earnings, the vast majority of workers are smallholders who lack the digital infrastructure and capital to adopt AI-driven precision agriculture or automated farming machinery. Consequently, current AI tools have a negligible impact on how daily agricultural work is executed in India."
+  },
+  "612": {
+    "nco_code": "612",
+    "exposure": 0,
+    "rationale": "Animal production work in India consists primarily of manual, physical tasks such as feeding, herding, milking, and managing livestock, poultry, and silk/bee culture. With 99.2% informality and 99.0% self-employment at extremely low median earnings (INR 4,500 per month), there is virtually no digital infrastructure or economic viability for AI adoption. Consequently, current AI technologies have almost zero impact on the daily operations of these workers."
+  },
+  "613": {
+    "nco_code": "613",
+    "exposure": 0,
+    "rationale": "Mixed crop and animal workers engage in physical, outdoor manual labor involving crop cultivation and livestock care. With 99.8% informality and 99.3% self-employment, there is virtually no digital infrastructure or economic incentive to integrate AI into daily farm operations. Very low prevailing wages ensure that agricultural tasks remain entirely human-driven in India."
+  },
+  "621": {
+    "nco_code": "621",
+    "exposure": 1,
+    "rationale": "Forestry and related work in India is predominantly outdoor, physical, and manual, consisting of tasks like wood cutting, gathering forest products, and patrolling forests. High informality (78.4%) and very low wages (median INR 9,000/month) severely limit the economic viability of digital or AI-driven automation. While satellite and AI tools may slightly assist higher-level foresters with mapping or monitoring, the daily work for the vast majority of workers in this group remains completely unimpacted by AI."
+  },
+  "622": {
+    "nco_code": "622",
+    "exposure": 0,
+    "rationale": "Fishery workers, hunters, and trappers engage almost entirely in physical, outdoor, and manual labor such as operating boats, catching fish, maintaining nets, and managing aquaculture stocks. With an extremely high informality rate of 92.8% and a predominantly self-employed workforce earning low median wages, there is virtually no digital infrastructure or financial incentive for AI adoption. Consequently, current AI technologies have almost no impact on how these daily tasks are performed in India."
+  },
+  "631": {
+    "nco_code": "631",
+    "exposure": 0,
+    "rationale": "Subsistence crop farming involves exclusively physical, manual labor performed outdoors with no digital infrastructure. Given the 100% informal nature of the work and extremely low earnings (median INR 2,400 per month), AI technology has no cost-effective application or impact on daily farming tasks. Consequently, current AI reshapes almost nothing about how this work is conducted."
+  },
+  "632": {
+    "nco_code": "632",
+    "exposure": 0,
+    "rationale": "Subsistence livestock farming involves entirely physical and manual labor in rural, informal settings with no digital infrastructure. Given the 100% informal nature of the work and extremely low earnings (median INR 1,900 per month), AI tools are neither affordable nor applicable to daily tasks. Consequently, current AI reshapes virtually nothing about how this work is performed in India."
+  },
+  "633": {
+    "nco_code": "633",
+    "exposure": 0,
+    "rationale": "Subsistence mixed crop and livestock farming relies entirely on manual physical labor, animal husbandry, and traditional agricultural practices. With 100% informality and very low earnings, there is no digital infrastructure or economic driver for AI adoption. Consequently, current AI technologies have almost no impact on the daily tasks of these farmers."
+  },
+  "634": {
+    "nco_code": "634",
+    "exposure": 0,
+    "rationale": "Subsistence fishing, hunting, trapping, and gathering consist entirely of physical, manual, and location-dependent outdoor activities. With 100% informality and extremely low median earnings (INR 1,050 per month), there is no digital infrastructure or financial viability for adopting AI technologies. Consequently, current AI has virtually no impact on how these tasks are performed."
+  },
+  "711": {
+    "nco_code": "711",
+    "exposure": 0,
+    "rationale": "Minor group 711 consists entirely of physical, manual construction trades such as bricklaying, stonemasonry, carpentry, and scaffolding. Over 90% of these workers operate informally as casual laborers or self-employed tradespeople without digital tools or infrastructure. Current AI has virtually no applicability or impact on these on-site, hands-on physical tasks."
+  },
+  "712": {
+    "nco_code": "712",
+    "exposure": 1,
+    "rationale": "Building finishers, plumbers, tile setters, and refrigeration mechanics perform manual, physical tasks directly on construction sites or at customer premises. Current AI technology cannot execute physical installation, fitting, or repair work, which dominates these occupations. Additionally, high informality (89.7%) and low prevailing wages make mechanical or automated alternatives financially unviable in India."
+  },
+  "713": {
+    "nco_code": "713",
+    "exposure": 1,
+    "rationale": "Occupations in this group involve physical, on-site manual work such as painting buildings, spraying automotive bodies, and cleaning structures. High informality (91.5%) and low median earnings (INR 13,000/month) mean there is minimal digital infrastructure and little financial incentive to adopt AI-driven or automated technologies. As a result, current AI reshapes virtually none of the primary tasks performed by these workers."
+  },
+  "721": {
+    "nco_code": "721",
+    "exposure": 1,
+    "rationale": "This group consists primarily of manual, physical trade occupations such as welding, metal moulding, sheet metal fabrication, and rigging. Current AI technologies have negligible direct impact on hands-on craft tasks performed on construction sites and in metal workshops. Low prevailing local wages and a significant informal sector further limit the economic viability of adopting automated physical machinery."
+  },
+  "722": {
+    "nco_code": "722",
+    "exposure": 1,
+    "rationale": "This group comprises physical, manual trades involving blacksmithing, tool making, forging, and operating metalworking machinery. Tasks require direct physical effort, manual dexterity, and shop-floor execution that current AI cannot perform or directly alter. Furthermore, high informal employment and low average wages make AI integration or advanced automation economically unfeasible for most enterprises in India."
+  },
+  "723": {
+    "nco_code": "723",
+    "exposure": 2,
+    "rationale": "Machinery mechanics and repairers perform overwhelmingly physical, manual, and in-person tasks such as diagnosing mechanical faults, dismantling parts, and repairing engines or machinery. While AI diagnostic tools and digital manuals may assist high-end automotive or aviation technicians in troubleshooting, the vast majority of workers operate in roadside garages, small workshops, or informal settings with low wages (median INR 15,000/month). Consequently, AI tools have minimal direct impact on the day-to-day physical labor of this occupational group."
+  },
+  "731": {
+    "nco_code": "731",
+    "exposure": 1,
+    "rationale": "This minor group comprises physical handicraft production, manual instrument tuning, precision hand metalworking, and physical repairs, all of which rely fundamentally on tactile skill and physical manipulation. High rates of informality (77.9%) and low median monthly earnings (INR 9,000) mean digital infrastructure is minimal and sophisticated physical automation remains economically unviable. Consequently, AI reshapes almost none of the primary physical tasks performed by workers in this group."
+  },
+  "732": {
+    "nco_code": "732",
+    "exposure": 3,
+    "rationale": "While pre-press technicians and photomechanical workers experience task transformation through automated layout software, image processing, and AI-driven prepress tools, the majority of printing trade workers in India operate physical press machinery, screen printing setups, and binding equipment. These hands-on machine operation and physical material handling tasks are unaffected by software AI. Additionally, modest monthly earnings (INR 15,000) and widespread informal or small-scale print shops slow down the adoption of advanced automated hardware."
+  },
+  "741": {
+    "nco_code": "741",
+    "exposure": 2,
+    "rationale": "Electrical equipment installers and repairers perform hands-on, physical, and on-site work involving wiring, fitting, and maintaining electrical systems. While AI can assist with diagnostic guidance, reading schematics, or troubleshooting workflows, the core tasks require physical presence and manual dexterity. High informality (60.8%) and modest local wages further limit the integration of advanced AI-driven diagnostic tools in day-to-day operations."
+  },
+  "742": {
+    "nco_code": "742",
+    "exposure": 2,
+    "rationale": "The vast majority of tasks in this group involve hands-on physical labor, such as installing equipment, splicing optical fibers, mounting solar panels, and soldering electronic components. While AI can assist in diagnostic software and app-guided troubleshooting, it cannot perform the physical installation or repair work required in the field. Given the low median earnings (INR 15,000) and field-based nature of the work, AI adoption remains limited to basic diagnostic assistance."
+  },
+  "751": {
+    "nco_code": "751",
+    "exposure": 1,
+    "rationale": "Food processing and related trade workers engage primarily in physical, manual tasks such as butchering, baking, sweet making, and preserving food. The work is overwhelmingly informal (86.3%) with very low median earnings (INR 4,000 per month), meaning digital infrastructure is largely absent and human labor remains far cheaper than automation or AI technologies. Consequently, current AI has virtually no impact on reshaping the daily responsibilities of these workers in India."
+  },
+  "752": {
+    "nco_code": "752",
+    "exposure": 1,
+    "rationale": "This group comprises physical, manual, and craft-based occupations focused on treating, cutting, carving, and assembling wood products and furniture. With a high level of informality (73.3%) and low median earnings, there is little digital infrastructure or economic incentive to deploy AI or advanced automated systems. Consequently, current AI tools have virtually no direct impact on the day-to-day physical tasks of these workers in India."
+  },
+  "753": {
+    "nco_code": "753",
+    "exposure": 1,
+    "rationale": "Garment and related trades workers perform physical, manual tasks such as cutting, stitching, embroidering, and tailoring fabrics. With 83% informality, nearly 80% self-employment, and low median monthly earnings of INR 7,000, there is virtually no digital infrastructure or economic rationale to deploy advanced AI or automated technology. Consequently, current AI has a negligible impact on the day-to-day craft and physical operations of this workforce in India."
+  },
+  "754": {
+    "nco_code": "754",
+    "exposure": 2,
+    "rationale": "This group comprises manual and physically intensive craft occupations, including underwater divers, shotfirers, pest controllers, and physical product testers or graders. While some formal manufacturing quality control involves basic digital testing tools or computer vision, the vast majority of tasks require direct manual inspection, physical handling, and specialized outdoor labor. High informality (58.1%) and low median earnings (INR 12,000) further limit the economic viability of AI-driven automation for these roles."
+  },
+  "811": {
+    "nco_code": "811",
+    "exposure": 1,
+    "rationale": "Occupations in this group primarily involve heavy physical labor, operating machinery, drilling, and stone processing in mines and quarries. Current AI has minimal direct impact on these hands-on, site-based tasks, especially given the physical environment and relatively low local wage structure. Most daily operations rely on manual dexterity and physical machinery control rather than digital or information-based workflows."
+  },
+  "812": {
+    "nco_code": "812",
+    "exposure": 2,
+    "rationale": "Occupations in this group involve operating heavy plant machinery, furnaces, casting equipment, and chemical coating baths to process and finish metals. While modern industrial automation and sensors are integrated into large manufacturing plants, current AI tools do not directly automate or reshape the physical, hands-on tasks performed by these machine operators. As a result, AI exposure remains low for these predominantly physical and machine-tending roles."
+  },
+  "813": {
+    "nco_code": "813",
+    "exposure": 2,
+    "rationale": "Occupations in this group primarily involve operating, monitoring, and maintaining physical machinery and equipment for chemical processing, mixing, filtering, and drying. These tasks require physical presence, manual dexterity, and direct manipulation of materials on the factory floor. While modern chemical plants use automated control systems, current AI technologies have limited applicability to these physical machine-operating tasks, keeping AI exposure low."
+  },
+  "814": {
+    "nco_code": "814",
+    "exposure": 1,
+    "rationale": "Occupations in this group primarily involve the physical operation, monitoring, and feeding of heavy machinery used to produce rubber, plastic, and paper products. Current AI technologies have negligible direct impact on these manual, shop-floor tasks which require physical presence and tactile handling. Additionally, given low prevailing wages in Indian manufacturing, integrating capital-intensive AI-driven robotics is economically unfeasible for most enterprises."
+  },
+  "815": {
+    "nco_code": "815",
+    "exposure": 1,
+    "rationale": "Textile, fur, and leather machine operators perform physical, manual tasks such as feeding materials, attending industrial looms, and operating sewing machinery. Current AI technologies do not significantly alter these hands-on physical labor activities. Furthermore, low local wages (median INR 13,000 per month) make capital-intensive robotic automation economically unviable for most Indian manufacturing units."
+  },
+  "816": {
+    "nco_code": "816",
+    "exposure": 1,
+    "rationale": "Food and related products machine operators perform physical, in-person tasks involving the operation and maintenance of processing machinery like flour mills, oil crushers, and canning equipment. A high level of informality (60.2%) and a large proportion of small, self-employed operations (54.1%) keep digital infrastructure low and AI adoption minimal. Given low prevailing wages (median INR 13,000 per month), upgrading to AI-driven automated processing is economically unviable for the vast majority of Indian enterprises in this sector."
+  },
+  "817": {
+    "nco_code": "817",
+    "exposure": 1,
+    "rationale": "Occupations in this group involve operating heavy physical machinery, saws, pulping equipment, and manual paper-making tools. Current AI has very little impact on these direct machine-operating and manual processing tasks. High informality (56.6%) and low local wage levels make the implementation of advanced AI-driven factory monitoring systems economically unviable for most operators."
+  },
+  "818": {
+    "nco_code": "818",
+    "exposure": 2,
+    "rationale": "Occupations in this group involve physical operation, monitoring, and maintenance of industrial machinery such as boilers, kilns, and glass or ceramics processing equipment. The work is hands-on and location-bound on factory floors, offering minimal touchpoints for current AI technologies to reshape day-to-day tasks. Additionally, low local wage rates make advanced AI-driven physical automation economically impractical for most manufacturing plants in India."
+  },
+  "821": {
+    "nco_code": "821",
+    "exposure": 1,
+    "rationale": "Assemblers perform manual and physical tasks such as fitting mechanical components, wiring, soldering, and assembling machinery or electronics. Current AI technologies have minimal direct impact on physical assembly work, with applications largely restricted to automated computer-vision quality checks in high-end manufacturing. Given the physical nature of the work and low prevailing wages in India, AI reshapes almost none of the primary day-to-day tasks."
+  },
+  "831": {
+    "nco_code": "831",
+    "exposure": 2,
+    "rationale": "Locomotive drivers, signalmen, and pointsmen perform physical, safety-critical operational work on tracks and in train cabs. While advanced railway management systems and automated signaling exist, current AI has a very limited direct impact on reshaping the real-time physical, manual, and observational tasks performed by these workers on Indian Railways."
+  },
+  "832": {
+    "nco_code": "832",
+    "exposure": 1,
+    "rationale": "The work of driving cars, auto-rickshaws, and delivery motorcycles is fundamentally physical and hands-on, operating in complex and highly informal road environments. Current AI technology has minimal impact on the physical task of driving or delivering goods in India, where low labor costs and lack of digital road infrastructure make automated transport financially and practically unviable. While algorithmic routing platforms assist in dispatching, the core manual work performed by drivers remains largely unchanged by AI."
+  },
+  "833": {
+    "nco_code": "833",
+    "exposure": 1,
+    "rationale": "Heavy truck and bus driving is entirely physical, in-person work conducted in highly complex and unstandardized road environments across India. Low driver wages make advanced autonomous driving hardware and AI navigation systems cost-prohibitive to deploy compared to human labor. As a result, current AI technologies have virtually no impact on the core daily tasks of these drivers."
+  },
+  "834": {
+    "nco_code": "834",
+    "exposure": 1,
+    "rationale": "Mobile plant operators perform physical, in-person tasks involving the manual operation of heavy machinery, cranes, tractors, and earthmoving equipment across farms, mines, and construction sites. The physical nature of the work, along with high informality and low prevailing wages (median INR 15,000/month), makes the deployment of autonomous or AI-driven equipment economically unviable in India for the foreseeable future. Consequently, current AI technologies have virtually no direct impact on the day-to-day work of these operators."
+  },
+  "835": {
+    "nco_code": "835",
+    "exposure": 0,
+    "rationale": "Ships' deck crews and related workers perform heavy physical and manual labor, such as mooring, steering, maintaining vessels, and operating small boats. Given the high degree of informality, low median earnings, and hands-on operational environment, current AI technology has virtually no impact on these daily physical tasks."
+  },
+  "911": {
+    "nco_code": "911",
+    "exposure": 0,
+    "rationale": "This group consists entirely of manual physical cleaning and maintenance tasks in homes, hotels, and offices. Current AI technologies lack physical capabilities, and automated cleaning machinery remains economically unviable compared to low prevailing local wages in India. Consequently, AI reshapes virtually none of the daily tasks associated with these occupations."
+  },
+  "912": {
+    "nco_code": "912",
+    "exposure": 0,
+    "rationale": "Occupations in this group consist entirely of manual, physical, and in-person tasks such as hand-washing clothes, pressing garments, and cleaning vehicles or windows. High informality (72.3%) and low median earnings (INR 12,000) mean these jobs lack digital workflows, and cheap manual labor renders technological substitution economically unviable. Consequently, current AI technologies have virtually no impact on reshaping the daily tasks of these workers."
+  },
+  "921": {
+    "nco_code": "921",
+    "exposure": 0,
+    "rationale": "Agricultural, forestry, and fishery labourers perform strictly physical, manual outdoor tasks such as planting, picking, ploughing, and tending livestock. With an informality rate of 97% and extremely low median monthly earnings, there is virtually no digital infrastructure or financial incentive to deploy AI technologies in these roles. Consequently, current AI has practically no impact on how this work is performed in India."
+  },
+  "931": {
+    "nco_code": "931",
+    "exposure": 0,
+    "rationale": "Mining and construction labourers engage entirely in manual, physical on-site tasks such as digging, carrying materials, and assisting trade workers. With an informal employment rate of nearly 98% and extremely low casual wages, AI technology has virtually no economic or practical application to these tasks. Consequently, current AI reshapes almost nothing about how this work is conducted."
+  },
+  "932": {
+    "nco_code": "932",
+    "exposure": 1,
+    "rationale": "Manufacturing labourers perform predominantly physical and manual tasks such as hand packing, labelling, weighing, and assisting machinery operators. Current AI software has negligible direct application to these hands-on physical activities on the factory floor. Furthermore, low prevailing wages in India make automated hardware or robotic alternatives economically impractical for replacing or altering basic manual labor."
+  },
+  "933": {
+    "nco_code": "933",
+    "exposure": 0,
+    "rationale": "Transport and storage labourers perform heavy physical and manual tasks such as loading, unloading, pulling hand carts, and manual shelf stocking. With high informality (66.3%) and a majority working as casual labourers at low wages (median INR 11,357/month), there is virtually no digital infrastructure or economic rationale for AI deployment. Current AI technologies have negligible impact on reshaping these physical, in-person occupations."
+  },
+  "941": {
+    "nco_code": "941",
+    "exposure": 1,
+    "rationale": "Food preparation assistants perform physical, manual, and in-person tasks such as chopping, washing, cleaning, and basic food assembly. In India, low prevailing wages and significant informality make physical kitchen automation cost-ineffective compared to human labor. Consequently, current AI technologies have virtually no direct impact on reshaping the daily tasks of kitchen helpers."
+  },
+  "951": {
+    "nco_code": "951",
+    "exposure": 0,
+    "rationale": "Street and related service workers perform purely physical and manual tasks outdoors, such as shoe polishing and bill pasting. These activities lack digital touchpoints and operate almost entirely in the informal economy with very low wages. Consequently, current AI technologies have no direct impact on reshaping the daily work of this group."
+  },
+  "952": {
+    "nco_code": "952",
+    "exposure": 0,
+    "rationale": "Street vending involves physical, in-person sales and handling of non-food items in outdoor, informal settings. With an informality rate of 98.5% and low median earnings, there is negligible digital infrastructure or economic incentive to adopt AI technologies. Consequently, current AI has virtually no impact on the daily tasks of this occupation group."
+  },
+  "961": {
+    "nco_code": "961",
+    "exposure": 0,
+    "rationale": "Refuse workers, sweepers, and collectors perform entirely physical, manual, and in-person labor such as collecting waste and sweeping streets. Current AI technologies have virtually no applicability to these physical tasks. Extremely low local wages and a lack of digital infrastructure further ensure that work in this minor group remains unimpacted by AI."
+  },
+  "962": {
+    "nco_code": "962",
+    "exposure": 1,
+    "rationale": "This occupation group consists primarily of physical, manual, and in-person labor such as delivering packages, carrying luggage, reading meters, and working as attendants. Current AI technologies have virtually no direct impact on these hands-on physical tasks, which require in-person presence and manual effort. Low prevailing wages and limited digital infrastructure further ensure that these elementary tasks remain largely unreshaped by AI."
+  },
+  "_meta": {
+    "model": "google/gemini-3.6-flash"
+  }
+}

@@ -1,0 +1,27 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+
+# Secrets
+.env
+
+# macOS
+.DS_Store
+
+# PLFS unit-level microdata (login-gated, ~GB, not redistributable)
+data/plfs/raw/
+data/plfs/*.parquet
+data/nco/*.pdf
+data/occupations_in.csv
+data/tabulate_meta.json
+data/nco/nco_raw_text.txt
+data/nco/nco_descriptions.json
+.gstack/
+data/reference/plfs_docs/*.zip

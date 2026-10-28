@@ -1,0 +1,1061 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>India Job Market Visualizer</title>
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #0a0a0f;
+  --bg2: #12121a;
+  --fg: #e0e0e8;
+  --fg2: #888894;
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+}
+
+#wrapper {
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+  padding-bottom: 250px;
+}
+
+#header {
+  padding: 20px 28px 16px;
+  flex-shrink: 0;
+}
+
+.intro {
+  margin-bottom: 18px;
+}
+.intro h1 {
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.intro p {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--fg2);
+  margin-bottom: 8px;
+}
+.intro strong, .intro b { color: var(--fg); font-weight: 600; }
+
+.intro details { margin: 10px 0; }
+.intro summary {
+  font-size: 14px;
+  color: var(--fg2);
+  cursor: pointer;
+  user-select: none;
+}
+.intro summary:hover { color: var(--fg); }
+.intro .prompt-box {
+  margin-top: 8px;
+  background: rgba(0,0,0,0.3);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 6px;
+  padding: 12px 16px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--fg2);
+  max-height: 300px;
+  overflow-y: auto;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.stats-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px 28px;
+  align-items: flex-start;
+  margin-bottom: 12px;
+}
+
+.stat-section {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.stat-section h3 {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--fg2);
+}
+.stat-big {
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+.stat-label {
+  font-size: 11px;
+  color: var(--fg2);
+}
+
+.tier-bar { display: flex; flex-direction: column; gap: 3px; }
+.tier-row { display: flex; align-items: center; gap: 6px; font-size: 12px; }
+.tier-color { width: 10px; height: 10px; border-radius: 2px; flex-shrink: 0; }
+.tier-name { flex: 1; color: var(--fg2); white-space: nowrap; }
+.tier-workers { text-align: right; white-space: nowrap; }
+.tier-pct { text-align: right; width: 30px; color: var(--fg2); font-size: 11px; }
+
+.histogram { display: flex; align-items: flex-end; gap: 2px; height: 54px; }
+.histogram .bar { flex: 1; border-radius: 1px 1px 0 0; min-height: 1px; }
+.hist-labels { display: flex; justify-content: space-between; font-size: 10px; color: var(--fg2); margin-top: 2px; }
+
+.hbar-chart { display: flex; flex-direction: column; gap: 3px; }
+.hbar-row { display: flex; align-items: center; gap: 6px; font-size: 12px; }
+.hbar-label { width: 100px; flex-shrink: 0; color: var(--fg2); font-size: 11px; text-align: right; }
+.hbar-track { flex: 1; height: 12px; background: rgba(255,255,255,0.04); border-radius: 2px; overflow: hidden; min-width: 36px; }
+.hbar-fill { height: 100%; border-radius: 2px; }
+.hbar-val { width: 74px; flex-shrink: 0; font-size: 11px; color: var(--fg); text-align: right; }
+
+.controls-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+
+.color-toggle {
+  display: flex;
+  gap: 4px;
+}
+.color-toggle button {
+  padding: 6px 14px;
+  font-size: 12px;
+  font-weight: 500;
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 4px;
+  background: transparent;
+  color: var(--fg2);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.color-toggle button.active {
+  background: rgba(255,255,255,0.08);
+  color: var(--fg);
+  border-color: rgba(255,255,255,0.2);
+}
+.color-toggle button:hover:not(.active) {
+  background: rgba(255,255,255,0.04);
+}
+
+.gradient-legend {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: var(--fg2);
+}
+.gradient-legend canvas { border-radius: 2px; }
+
+.hatch-note {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: var(--fg2);
+}
+.hatch-sample {
+  width: 14px;
+  height: 14px;
+  border-radius: 2px;
+  flex-shrink: 0;
+  background: repeating-linear-gradient(45deg, rgba(0,0,0,0) 0 3px, rgba(0,0,0,0.35) 3px 4px), #8a8a94;
+}
+
+canvas#canvas {
+  display: block;
+  cursor: default;
+}
+
+#tooltip {
+  position: fixed;
+  pointer-events: none;
+  background: var(--bg2);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-size: 13px;
+  line-height: 1.5;
+  max-width: 360px;
+  opacity: 0;
+  transition: opacity 0.12s;
+  z-index: 20;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.6);
+}
+#tooltip.visible { opacity: 1; }
+#tooltip .tt-title { font-weight: 600; font-size: 14px; margin-bottom: 6px; color: #fff; }
+#tooltip .tt-exposure { font-size: 12px; margin-bottom: 8px; }
+#tooltip .tt-stats { display: grid; grid-template-columns: auto auto; gap: 2px 12px; font-size: 12px; }
+#tooltip .tt-stats .label { color: var(--fg2); }
+#tooltip .tt-stats .value { color: var(--fg); text-align: right; }
+#tooltip .tt-rationale { font-size: 11px; color: var(--fg2); margin-top: 8px; line-height: 1.4; border-top: 1px solid rgba(255,255,255,0.06); padding-top: 8px; }
+
+.caveats {
+  margin: 18px 28px 0;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+.caveats h3 {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--fg2);
+  margin-bottom: 8px;
+}
+.caveats ul { list-style: none; }
+.caveats li {
+  font-size: 12px;
+  color: var(--fg2);
+  line-height: 1.7;
+}
+.caveats li::before {
+  content: "\2014 ";
+  color: rgba(255,255,255,0.3);
+}
+</style>
+</head>
+<body>
+
+<div id="wrapper">
+<div id="header">
+  <div class="intro">
+    <h1>India Job Market Visualizer</h1>
+    <p>This is a research tool that visualizes <b id="introOcc">&mdash;</b> occupations from the <a href="https://microdata.gov.in/NADA/index.php/catalog/284">PLFS</a> &mdash; the Periodic Labour Force Survey, India's official employment survey &mdash; covering the period <b id="introPeriod">&mdash;</b>. Each rectangle is an occupation (a 3-digit NCO-2015 minor group), its <b>area</b> is proportional to total employment, and rectangles are grouped by NCO division. <b>Color</b> shows the selected metric: median monthly earnings, education level of workers, AI exposure, or female share. Hover any tile for details. This is not a report, a paper, or a serious economic publication; it is a development tool for exploring PLFS data visually.</p>
+    <p id="metaLine"></p>
+    <details>
+      <summary>How the AI exposure score is estimated</summary>
+      <div class="prompt-box">A language model reads the official NCO-2015 description of each 3-digit occupation group, the titles of its 4-digit unit groups, its status mix, and its informality share. It rates exposure on a 0 to 10 scale:
+
+- 0-1: almost entirely physical or hands-on work. AI has little effect.
+- 2-3: mostly physical or interpersonal work. AI helps with peripheral tasks only.
+- 4-5: a mix of physical and knowledge work. AI assists with some parts.
+- 6-7: predominantly knowledge work. AI tools are already useful.
+- 8-9: almost entirely digital work. The occupation faces major restructuring.
+- 10: routine information processing that AI can already do.
+
+The India rubric also weighs the cost of automation against the prevailing local wage and the share of informal work in the group. Scores are model estimates, not predictions of job loss.</div>
+    </details>
+  </div>
+
+  <div class="controls-row">
+    <div class="stat-section">
+      <h3>Layer</h3>
+      <div class="color-toggle" id="colorToggle">
+        <button data-mode="earnings" class="active">Median Earnings</button>
+        <button data-mode="education">Education Level</button>
+        <button data-mode="exposure">AI Exposure</button>
+        <button data-mode="female">Female Share</button>
+      </div>
+    </div>
+    <div class="gradient-legend">
+      <span id="legendLow">Low</span>
+      <canvas id="gradientLegend" width="80" height="8"></canvas>
+      <span id="legendHigh">High</span>
+    </div>
+    <span class="hatch-note"><span class="hatch-sample"></span>hatched = low confidence (small sample)</span>
+    <div class="stat-section">
+      <h3>Sector</h3>
+      <div class="color-toggle" id="sectorToggle">
+        <button data-cut="all" class="active">All</button>
+        <button data-cut="rural">Rural</button>
+        <button data-cut="urban">Urban</button>
+      </div>
+    </div>
+    <div class="stat-section">
+      <h3>Gender</h3>
+      <div class="color-toggle" id="sexToggle">
+        <button data-cut="all" class="active">All</button>
+        <button data-cut="female">Female</button>
+        <button data-cut="male">Male</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="stats-row">
+    <div class="stat-section">
+      <h3>Total workers</h3>
+      <div class="stat-big" id="statTotalWorkers">&mdash;</div>
+      <div class="stat-label">current cut</div>
+    </div>
+    <div class="stat-section" id="block2"></div>
+    <div class="stat-section" id="block3"></div>
+    <div class="stat-section" id="block4"></div>
+    <div class="stat-section" id="block5"></div>
+    <div class="stat-section" id="block6"></div>
+  </div>
+</div>
+
+<canvas id="canvas"></canvas>
+
+<div class="caveats">
+  <h3>Caveats</h3>
+  <ul>
+    <li>This is not an official statistic.</li>
+    <li>It shows one period. It shows no trend and no projection.</li>
+    <li>It reports the education workers hold, not the education a job requires.</li>
+    <li>Self-employment earnings overstate labour income.</li>
+    <li>Exposure scores are model estimates, not predictions of job loss.</li>
+  </ul>
+</div>
+</div>
+
+<div id="tooltip">
+  <div class="tt-title"></div>
+  <div class="tt-exposure"></div>
+  <div class="tt-stats"></div>
+  <div class="tt-rationale"></div>
+</div>
+
+<script>
+
+// ── Color scales ────────────────────────────────────────────────────────
+
+let colorMode = "earnings";
+let cutSector = "all";
+let cutSex = "all";
+
+function boostContrast(t) {
+  const c = (t - 0.5) * 2;
+  const b = Math.sign(c) * Math.pow(Math.abs(c), 0.55);
+  return b / 2 + 0.5;
+}
+
+function greenRedCSS(t, alpha) {
+  t = boostContrast(Math.max(0, Math.min(1, t)));
+  let r, g, b;
+  if (t < 0.5) {
+    const s = t / 0.5;
+    r = Math.round(30 + s * 200);
+    g = Math.round(180 - s * 20);
+    b = Math.round(40 - s * 20);
+  } else {
+    const s = (t - 0.5) / 0.5;
+    r = Math.round(230 + s * 25);
+    g = Math.round(160 - s * 130);
+    b = Math.round(20 - s * 5);
+  }
+  return `rgba(${r},${g},${b},${alpha})`;
+}
+
+const GREY = (a) => `rgba(128,128,128,${a})`;
+
+function isMissing(v) { return v == null || v === ""; }
+
+const EARN_MIN = 3000;
+const EARN_MAX = 200000;
+
+function expColor(v, a) {
+  if (isMissing(v)) return GREY(a);
+  return greenRedCSS(Math.max(0, Math.min(1, v / 10)), a);
+}
+function earnColor(v, a) {
+  if (isMissing(v)) return GREY(a);
+  const t = 1 - (Math.log(Math.max(EARN_MIN, Math.min(EARN_MAX, v))) - Math.log(EARN_MIN)) / (Math.log(EARN_MAX) - Math.log(EARN_MIN));
+  return greenRedCSS(t, a);
+}
+function eduColor(idx, a) {
+  if (idx < 0) return GREY(a);
+  return greenRedCSS(1 - idx / (EDU_LEVELS.length - 1), a);
+}
+function femaleColor(v, a) {
+  if (isMissing(v)) return GREY(a);
+  return greenRedCSS(1 - Math.max(0, Math.min(1, v)), a);
+}
+
+function earningScalePct(v) {
+  if (isMissing(v)) return 0;
+  const t = (Math.log(Math.max(EARN_MIN, Math.min(EARN_MAX, v))) - Math.log(EARN_MIN)) / (Math.log(EARN_MAX) - Math.log(EARN_MIN));
+  return Math.max(0, Math.min(100, t * 100));
+}
+
+function tileColorCSS(d, alpha) {
+  if (colorMode === "exposure") return expColor(d.exposure_in, alpha);
+  if (colorMode === "earnings") return earnColor(d.median_monthly_earnings_inr, alpha);
+  if (colorMode === "education") return eduColor(resolveEdu(d.education_median), alpha);
+  if (colorMode === "female") return femaleColor(d.female_share, alpha);
+  return GREY(alpha);
+}
+
+// ── Education levels (PLFS general education levels) ────────────────────
+
+const EDU_LEVELS = [
+  { name: "Not literate", short: "Not literate" },
+  { name: "Literate without formal schooling", short: "Lit. no formal" },
+  { name: "Below primary", short: "Below primary" },
+  { name: "Primary", short: "Primary" },
+  { name: "Middle", short: "Middle" },
+  { name: "Secondary", short: "Secondary" },
+  { name: "Higher secondary", short: "Higher sec." },
+  { name: "Diploma/Certificate course", short: "Diploma" },
+  { name: "Graduate", short: "Graduate" },
+  { name: "Post graduate and above", short: "Post grad+" },
+];
+
+const eduIndex = new Map();
+
+function resolveEdu(v) {
+  if (isMissing(v)) return -1;
+  if (eduIndex.has(v)) return eduIndex.get(v);
+  const s = String(v).toLowerCase();
+  let i = EDU_LEVELS.findIndex(e => e.name.toLowerCase() === s);
+  if (i < 0) i = EDU_LEVELS.findIndex(e => s.includes(e.name.toLowerCase()));
+  if (i < 0) {
+    EDU_LEVELS.push({ name: String(v), short: String(v).slice(0, 14) });
+    i = EDU_LEVELS.length - 1;
+  }
+  eduIndex.set(v, i);
+  return i;
+}
+
+function eduShort(v) {
+  const i = resolveEdu(v);
+  return i < 0 ? "" : EDU_LEVELS[i].short;
+}
+
+// ── Formatting, India specific ──────────────────────────────────────────
+
+// Indian grouping: last 3 digits together, then groups of 2.
+function formatIndian(n) {
+  if (n == null) return "\u2014";
+  let s = String(Math.round(n));
+  if (s.length <= 3) return s;
+  const last3 = s.slice(-3);
+  let rest = s.slice(0, -3);
+  const parts = [];
+  while (rest.length > 2) { parts.unshift(rest.slice(-2)); rest = rest.slice(0, -2); }
+  if (rest.length > 0) parts.unshift(rest);
+  return parts.join(",") + "," + last3;
+}
+
+function trimZeroes(s) { return s.replace(/\.?0+$/, ""); }
+
+// Worker counts with lakh and crore labels. 1 lakh = 100000, 1 crore = 10000000.
+function formatWorkers(n) {
+  if (n == null) return "\u2014";
+  if (n >= 1e7) return trimZeroes((n / 1e7).toFixed(2)) + " crore";
+  if (n >= 1e5) return trimZeroes((n / 1e5).toFixed(2)) + " lakh";
+  return formatIndian(n);
+}
+
+function formatMonthlyRs(n, short) {
+  if (n == null) return "\u2014";
+  return "Rs " + formatIndian(n) + (short ? " / mo" : " / month");
+}
+
+function formatPct(v, digits) {
+  if (v == null) return "\u2014";
+  const d = digits == null ? 0 : digits;
+  return (v * 100).toFixed(d) + "%";
+}
+
+function pct01(x) { return Math.max(0, Math.min(100, x * 100)); }
+
+// Layers meta for the legend.
+const LEGEND_CONFIG = {
+  exposure:  { low: "Low", high: "High" },
+  earnings:  { low: "Rs 3,000", high: "Rs 2,00,000" },
+  education: { low: null, high: null },
+  female:    { low: "0%", high: "100%" },
+};
+
+const EXP_TIERS = [
+  { label: "Minimal (0\u20131)", short: "Minimal", lo: 0, hi: 1, mid: 0.5 },
+  { label: "Low (2\u20133)", short: "Low", lo: 2, hi: 3, mid: 2.5 },
+  { label: "Moderate (4\u20135)", short: "Moderate", lo: 4, hi: 5, mid: 4.5 },
+  { label: "High (6\u20137)", short: "High", lo: 6, hi: 7, mid: 6.5 },
+  { label: "Very high (8\u201310)", short: "Very high", lo: 8, hi: 10, mid: 9 },
+];
+
+const EARN_BANDS = [
+  { short: "Rs 0\u20135K", min: 0, max: 5000, mid: 3000 },
+  { short: "Rs 5\u201310K", min: 5000, max: 10000, mid: 7500 },
+  { short: "Rs 10\u201320K", min: 10000, max: 20000, mid: 15000 },
+  { short: "Rs 20\u201340K", min: 20000, max: 40000, mid: 30000 },
+  { short: "Rs 40K+", min: 40000, max: Infinity, mid: 60000 },
+];
+
+const FEM_BANDS = [
+  { short: "0\u201320%", min: 0, max: 20, mid: 10 },
+  { short: "20\u201340%", min: 20, max: 40, mid: 30 },
+  { short: "40\u201360%", min: 40, max: 60, mid: 50 },
+  { short: "60\u201380%", min: 60, max: 80, mid: 70 },
+  { short: "80\u2013100%", min: 80, max: 100.001, mid: 90 },
+];
+
+function tileSubInfo(r) {
+  let value = "";
+  if (colorMode === "exposure") value = !isMissing(r.exposure_in) ? r.exposure_in + "/10" : "";
+  else if (colorMode === "earnings") value = formatMonthlyRs(r.median_monthly_earnings_inr, true);
+  else if (colorMode === "education") value = eduShort(r.education_median);
+  else if (colorMode === "female") value = formatPct(r.female_share);
+  return value + " \u00b7 " + formatWorkers(r.workers) + " workers";
+}
+
+// ── Squarified treemap layout ──────────────────────────────────────────
+
+function squarify(items, x, y, w, h) {
+  if (items.length === 0) return [];
+  if (items.length === 1) return [{ ...items[0], rx: x, ry: y, rw: w, rh: h }];
+  const total = items.reduce((s, d) => s + d.value, 0);
+  if (total === 0) return [];
+  const results = [];
+  let remaining = [...items], cx = x, cy = y, cw = w, ch = h;
+  while (remaining.length > 0) {
+    const remTotal = remaining.reduce((s, d) => s + d.value, 0);
+    const vertical = cw >= ch;
+    const side = vertical ? ch : cw;
+    let row = [remaining[0]], rowSum = remaining[0].value;
+    for (let i = 1; i < remaining.length; i++) {
+      const candidate = [...row, remaining[i]];
+      const candidateSum = rowSum + remaining[i].value;
+      if (worstAspect(candidate, candidateSum, side, remTotal, vertical ? cw : ch) <
+          worstAspect(row, rowSum, side, remTotal, vertical ? cw : ch)) {
+        row = candidate; rowSum = candidateSum;
+      } else break;
+    }
+    const rowFraction = rowSum / remTotal;
+    const rowThickness = vertical ? cw * rowFraction : ch * rowFraction;
+    let offset = 0;
+    for (const item of row) {
+      const itemFraction = item.value / rowSum;
+      const itemLength = side * itemFraction;
+      if (vertical) results.push({ ...item, rx: cx, ry: cy + offset, rw: rowThickness, rh: itemLength });
+      else results.push({ ...item, rx: cx + offset, ry: cy, rw: itemLength, rh: rowThickness });
+      offset += itemLength;
+    }
+    if (vertical) { cx += rowThickness; cw -= rowThickness; }
+    else { cy += rowThickness; ch -= rowThickness; }
+    remaining = remaining.slice(row.length);
+  }
+  return results;
+}
+
+function worstAspect(row, rowSum, side, totalArea, availableExtent) {
+  const rowExtent = availableExtent * (rowSum / totalArea);
+  if (rowExtent === 0) return Infinity;
+  let worst = 0;
+  for (const item of row) {
+    const itemLen = side * (item.value / rowSum);
+    if (itemLen === 0) continue;
+    const aspect = Math.max(rowExtent / itemLen, itemLen / rowExtent);
+    if (aspect > worst) worst = aspect;
+  }
+  return worst;
+}
+
+// ── Data + cut selection ────────────────────────────────────────────────
+
+let meta = {};
+let rows = [];
+
+function view() {
+  return rows.filter(d => d.cut_sector === cutSector && d.cut_sex === cutSex);
+}
+
+// ── Rendering ──────────────────────────────────────────────────────────
+
+let rects = [];
+let hovered = null;
+const canvas = document.getElementById("canvas");
+const ctx = canvas.getContext("2d");
+let dpr = window.devicePixelRatio || 1;
+const MARGIN = 12, GAP = 1.5;
+
+function layout() {
+  const wrapper = document.getElementById("wrapper");
+  const w = wrapper.clientWidth;
+  const h = Math.round(w * 3 / 4);
+  canvas.width = w * dpr; canvas.height = h * dpr;
+  canvas.style.width = w + "px"; canvas.style.height = h + "px";
+  const tx = MARGIN, ty = MARGIN, tw = w - MARGIN * 2, th = h - MARGIN * 2;
+  const byDivision = {};
+  for (const d of view()) {
+    const key = String(d.division);
+    if (!byDivision[key]) byDivision[key] = [];
+    byDivision[key].push(d);
+  }
+  const divisions = Object.keys(byDivision).map(key => ({
+    key, items: byDivision[key].sort((a, b) => (b.workers || 0) - (a.workers || 0)),
+    value: byDivision[key].reduce((s, d) => s + (d.workers || 1), 0),
+  })).sort((a, b) => b.value - a.value);
+  const divRects = squarify(divisions, tx, ty, tw, th);
+  rects = [];
+  for (const dr of divRects) {
+    const items = dr.items.map(d => ({ ...d, value: d.workers || 1 }));
+    const innerRects = squarify(items, dr.rx + GAP, dr.ry + GAP, dr.rw - GAP * 2, dr.rh - GAP * 2);
+    for (const ir of innerRects) rects.push(ir);
+  }
+}
+
+function drawHatch(rx, ry, rw, rh) {
+  ctx.save();
+  ctx.beginPath(); ctx.rect(rx, ry, rw, rh); ctx.clip();
+  ctx.strokeStyle = "rgba(0,0,0,0.35)";
+  ctx.lineWidth = 1.5;
+  const step = 7;
+  for (let x = rx - rh; x < rx + rw; x += step) {
+    ctx.beginPath(); ctx.moveTo(x, ry + rh); ctx.lineTo(x + rh, ry); ctx.stroke();
+  }
+  ctx.restore();
+}
+
+function draw() {
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  ctx.fillStyle = "#0a0a0f";
+  ctx.fillRect(0, 0, canvas.width / dpr, canvas.height / dpr);
+  for (const r of rects) {
+    const isHovered = r === hovered;
+    const g = GAP / 2, rx = r.rx + g, ry = r.ry + g, rw = r.rw - g * 2, rh = r.rh - g * 2;
+    if (rw <= 0 || rh <= 0) continue;
+    ctx.fillStyle = tileColorCSS(r, isHovered ? 0.8 : 0.5);
+    ctx.fillRect(rx, ry, rw, rh);
+    if (r.low_confidence && rw > 2 && rh > 2) drawHatch(rx, ry, rw, rh);
+    if (isHovered) { ctx.strokeStyle = "#fff"; ctx.lineWidth = 2; ctx.strokeRect(rx, ry, rw, rh); }
+    if (rw > 50 && rh > 18) {
+      ctx.save(); ctx.beginPath(); ctx.rect(rx + 4, ry + 2, rw - 8, rh - 4); ctx.clip();
+      const fontSize = Math.min(13, Math.max(9, Math.min(rw / 10, rh / 3)));
+      ctx.font = `500 ${fontSize}px -apple-system, system-ui, sans-serif`;
+      ctx.fillStyle = isHovered ? "#fff" : "rgba(255,255,255,0.85)";
+      ctx.textBaseline = "top";
+      ctx.fillText(r.title, rx + 5, ry + 4);
+      if (rh > 34 && rw > 60) {
+        ctx.font = `400 ${Math.max(8, fontSize - 2)}px -apple-system, system-ui, sans-serif`;
+        ctx.fillStyle = "rgba(255,255,255,0.5)";
+        ctx.fillText(tileSubInfo(r), rx + 5, ry + 4 + fontSize + 2);
+      }
+      ctx.restore();
+    }
+  }
+}
+
+function hitTest(mx, my) {
+  const rect = canvas.getBoundingClientRect();
+  const cx = mx - rect.left, cy = my - rect.top;
+  for (let i = rects.length - 1; i >= 0; i--) {
+    const r = rects[i];
+    if (cx >= r.rx && cx < r.rx + r.rw && cy >= r.ry && cy < r.ry + r.rh) return r;
+  }
+  return null;
+}
+
+function tooltipHighlight(d) {
+  if (colorMode === "exposure") {
+    const v = d.exposure_in;
+    if (isMissing(v)) return "";
+    const color = expColor(v, 1);
+    return `<span style="color:${color};font-weight:600;">AI Exposure: ${v}/10</span>` +
+      `<div style="margin-top:3px;height:4px;background:rgba(255,255,255,0.08);border-radius:2px;">` +
+      `<div style="height:100%;width:${v * 10}%;background:${color};border-radius:2px;"></div></div>`;
+  } else if (colorMode === "earnings") {
+    const v = d.median_monthly_earnings_inr;
+    if (isMissing(v)) return "";
+    const color = earnColor(v, 1);
+    return `<span style="color:${color};font-weight:600;">Median Monthly Earnings: ${formatMonthlyRs(v)}</span>` +
+      `<div style="margin-top:3px;height:4px;background:rgba(255,255,255,0.08);border-radius:2px;">` +
+      `<div style="height:100%;width:${earningScalePct(v)}%;background:${color};border-radius:2px;"></div></div>`;
+  } else if (colorMode === "education") {
+    const v = d.education_median;
+    if (isMissing(v)) return "";
+    const idx = resolveEdu(v);
+    const color = idx >= 0 ? eduColor(idx, 1) : "var(--fg)";
+    return `<span style="color:${color};font-weight:600;">Education: ${String(v)}</span>`;
+  } else if (colorMode === "female") {
+    const v = d.female_share;
+    if (isMissing(v)) return "";
+    const color = femaleColor(v, 1);
+    return `<span style="color:${color};font-weight:600;">Female Share: ${formatPct(v)}</span>` +
+      `<div style="margin-top:3px;height:4px;background:rgba(255,255,255,0.08);border-radius:2px;">` +
+      `<div style="height:100%;width:${pct01(v)}%;background:${color};border-radius:2px;"></div></div>`;
+  }
+  return "";
+}
+
+function showTooltip(d, mx, my) {
+  const tt = document.getElementById("tooltip");
+  const mix = d.status_mix || {};
+  tt.querySelector(".tt-title").textContent = d.title;
+  tt.querySelector(".tt-exposure").innerHTML = tooltipHighlight(d);
+  let rows = `
+    <span class="label">NCO code</span><span class="value">${d.nco_code == null ? "\u2014" : d.nco_code}</span>
+    <span class="label">Workers</span><span class="value">${formatWorkers(d.workers)}</span>
+    <span class="label">Median monthly earnings</span><span class="value">${formatMonthlyRs(d.median_monthly_earnings_inr)}</span>
+    <span class="label">Earnings coverage</span><span class="value">${formatPct(d.earnings_coverage)}</span>
+    <span class="label">Education</span><span class="value">${isMissing(d.education_median) ? "\u2014" : d.education_median}</span>
+    <span class="label">Informality share</span><span class="value">${formatPct(d.informality_share)}</span>
+    <span class="label">Self-employed</span><span class="value">${formatPct(mix.self_employed)}</span>
+    <span class="label">Regular</span><span class="value">${formatPct(mix.regular)}</span>
+    <span class="label">Casual</span><span class="value">${formatPct(mix.casual)}</span>
+    <span class="label">Female share</span><span class="value">${formatPct(d.female_share)}</span>
+    <span class="label">Sample (n)</span><span class="value">${d.sample_n == null ? "\u2014" : formatIndian(d.sample_n)}</span>
+    <span class="label">AI exposure</span><span class="value">${isMissing(d.exposure_in) ? "\u2014" : d.exposure_in + "/10"}</span>`;
+  if (d.low_confidence) {
+    rows += `<span class="label">Confidence</span><span class="value" style="color:#e8b94b;">Low \u2014 small sample</span>`;
+  }
+  tt.querySelector(".tt-stats").innerHTML = rows;
+  tt.querySelector(".tt-rationale").textContent = colorMode === "exposure" ? (d.exposure_in_rationale || "") : "";
+  let tx = mx + 16, ty = my - 16;
+  if (tx + 360 > window.innerWidth) tx = mx - 376;
+  if (ty < 10) ty = my + 16;
+  if (ty + 200 > window.innerHeight) ty = my - 200;
+  tt.style.left = tx + "px"; tt.style.top = ty + "px";
+  tt.classList.add("visible");
+}
+function hideTooltip() { document.getElementById("tooltip").classList.remove("visible"); }
+
+// ── Shared stat helpers ─────────────────────────────────────────────────
+
+function weightedAvg(metricFn) {
+  let s = 0, w = 0;
+  for (const d of view()) {
+    const v = metricFn(d), k = d.workers || 0;
+    if (v != null && k > 0) { s += v * k; w += k; }
+  }
+  return w > 0 ? s / w : null;
+}
+
+function workerCounts(filterFn) {
+  let c = 0;
+  for (const d of view()) if (filterFn(d)) c += (d.workers || 0);
+  return c;
+}
+
+function eduGroupAvg(metricFn) {
+  return EDU_LEVELS.map((e, i) => {
+    let s = 0, w = 0;
+    for (const d of view()) {
+      if (resolveEdu(d.education_median) !== i) continue;
+      const v = metricFn(d), k = d.workers || 0;
+      if (v != null && k > 0) { s += v * k; w += k; }
+    }
+    return { label: e.short, avg: w > 0 ? s / w : null };
+  });
+}
+
+function earnGroupAvg(metricFn) {
+  return EARN_BANDS.map(b => {
+    let s = 0, w = 0;
+    for (const d of view()) {
+      const v = d.median_monthly_earnings_inr;
+      if (isMissing(v) || v < b.min || v >= b.max) continue;
+      const mv = metricFn(d), k = d.workers || 0;
+      if (mv != null && k > 0) { s += mv * k; w += k; }
+    }
+    return { label: b.short, avg: w > 0 ? s / w : null };
+  });
+}
+
+function tierGroupAvg(metricFn) {
+  return EXP_TIERS.map(t => {
+    let s = 0, w = 0;
+    for (const d of view()) {
+      const ex = d.exposure_in;
+      if (isMissing(ex) || ex < t.lo || ex > t.hi) continue;
+      const v = metricFn(d), k = d.workers || 0;
+      if (v != null && k > 0) { s += v * k; w += k; }
+    }
+    return { label: t.short, avg: w > 0 ? s / w : null };
+  });
+}
+
+function renderTiers(tiers, totalWorkers) {
+  return tiers.map(t => `<div class="tier-row">
+    <div class="tier-color" style="background:${t.color}"></div>
+    <span class="tier-name">${t.label}</span>
+    <span class="tier-workers">${formatWorkers(t.workers)}</span>
+    <span class="tier-pct">${totalWorkers > 0 ? (t.workers / totalWorkers * 100).toFixed(0) : 0}%</span>
+  </div>`).join("");
+}
+
+function renderHbars(items) {
+  return items.map(it => `<div class="hbar-row">
+    <span class="hbar-label">${it.label}</span>
+    <div class="hbar-track"><div class="hbar-fill" style="width:${it.pct}%;background:${it.color}"></div></div>
+    <span class="hbar-val">${it.val}</span>
+  </div>`).join("");
+}
+
+// ── Layer-specific stats ────────────────────────────────────────────────
+
+function updateExposureStats(total) {
+  const avg = weightedAvg(d => isMissing(d.exposure_in) ? null : d.exposure_in);
+  document.getElementById("block2").innerHTML = `<h3>Avg. exposure</h3>
+    <div class="stat-big"><span style="color:${expColor(avg, 1)}">${avg == null ? "\u2014" : avg.toFixed(1)}</span></div>
+    <div class="stat-label">worker-weighted, 0\u201310</div>`;
+
+  const hist = new Array(11).fill(0);
+  for (const d of view()) if (!isMissing(d.exposure_in)) hist[d.exposure_in] += (d.workers || 0);
+  document.getElementById("block3").innerHTML = `<h3>Workers by exposure</h3>
+    <div class="histogram">${hist.map((c, i) => `<div class="bar" style="height:${Math.max(2, Math.max(...hist) > 0 ? c / Math.max(...hist) * 100 : 0)}%;background:${expColor(i, 0.7)}"></div>`).join("")}</div>
+    <div class="hist-labels"><span>0</span><span>5</span><span>10</span></div>`;
+
+  const tiers = EXP_TIERS.map(t => {
+    const workers = workerCounts(d => !isMissing(d.exposure_in) && d.exposure_in >= t.lo && d.exposure_in <= t.hi);
+    return { ...t, label: t.label, workers, color: expColor(t.mid, 1) };
+  });
+  document.getElementById("block4").innerHTML = `<h3>Exposure tiers</h3><div class="tier-bar">${renderTiers(tiers, total)}</div>`;
+
+  document.getElementById("block5").innerHTML = `<h3>Exposure by education</h3><div class="hbar-chart">${renderHbars(eduGroupAvg(d => isMissing(d.exposure_in) ? null : d.exposure_in).map(g => ({
+    label: g.label, val: g.avg == null ? "\u2014" : g.avg.toFixed(1),
+    pct: g.avg == null ? 0 : pct01(g.avg / 10), color: expColor(g.avg, 0.8)
+  })))}</div>`;
+
+  document.getElementById("block6").innerHTML = `<h3>Exposure by earnings</h3><div class="hbar-chart">${renderHbars(earnGroupAvg(d => isMissing(d.exposure_in) ? null : d.exposure_in).map(g => ({
+    label: g.label, val: g.avg == null ? "\u2014" : g.avg.toFixed(1),
+    pct: g.avg == null ? 0 : pct01(g.avg / 10), color: expColor(g.avg, 0.8)
+  })))}</div>`;
+}
+
+function updateEarningsStats(total) {
+  const avg = weightedAvg(d => isMissing(d.median_monthly_earnings_inr) ? null : d.median_monthly_earnings_inr);
+  document.getElementById("block2").innerHTML = `<h3>Avg. median earnings</h3>
+    <div class="stat-big"><span style="color:${earnColor(avg, 1)}">${formatMonthlyRs(avg)}</span></div>
+    <div class="stat-label">worker-weighted, monthly</div>`;
+
+  const hist = EARN_BANDS.map(b => {
+    let c = 0;
+    for (const d of view()) {
+      const v = d.median_monthly_earnings_inr;
+      if (!isMissing(v) && v >= b.min && v < b.max) c += (d.workers || 0);
+    }
+    return c;
+  });
+  const maxH = Math.max(...hist);
+  document.getElementById("block3").innerHTML = `<h3>Workers by earnings</h3>
+    <div class="histogram">${hist.map((c, i) => `<div class="bar" style="height:${Math.max(2, maxH > 0 ? c / maxH * 100 : 0)}%;background:${earnColor(EARN_BANDS[i].mid, 0.7)}"></div>`).join("")}</div>
+    <div class="hist-labels"><span>Rs 5K</span><span>Rs 20K</span><span>Rs 40K+</span></div>`;
+
+  const tiers = EARN_BANDS.map(b => {
+    const workers = workerCounts(d => {
+      const v = d.median_monthly_earnings_inr;
+      return !isMissing(v) && v >= b.min && v < b.max;
+    });
+    return { ...b, label: b.short, workers, color: earnColor(b.mid, 1) };
+  });
+  document.getElementById("block4").innerHTML = `<h3>Earnings tiers</h3><div class="tier-bar">${renderTiers(tiers, total)}</div>`;
+
+  document.getElementById("block5").innerHTML = `<h3>Avg earnings by education</h3><div class="hbar-chart">${renderHbars(eduGroupAvg(d => isMissing(d.median_monthly_earnings_inr) ? null : d.median_monthly_earnings_inr).map(g => ({
+    label: g.label, val: formatMonthlyRs(g.avg, true),
+    pct: earningScalePct(g.avg), color: earnColor(g.avg, 0.8)
+  })))}</div>`;
+
+  document.getElementById("block6").innerHTML = `<h3>Avg earnings by exposure</h3><div class="hbar-chart">${renderHbars(tierGroupAvg(d => isMissing(d.median_monthly_earnings_inr) ? null : d.median_monthly_earnings_inr).map(g => ({
+    label: g.label, val: formatMonthlyRs(g.avg, true),
+    pct: earningScalePct(g.avg), color: earnColor(g.avg, 0.8)
+  })))}</div>`;
+}
+
+function updateEducationStats(total) {
+  let gradIdx = EDU_LEVELS.findIndex(e => e.name === "Graduate");
+  if (gradIdx < 0) gradIdx = EDU_LEVELS.length - 1;
+  let g = 0, t = 0;
+  for (const d of view()) {
+    const k = d.workers || 0;
+    if (k <= 0) continue;
+    t += k;
+    const i = resolveEdu(d.education_median);
+    if (i >= gradIdx) g += k;
+  }
+  const gradShare = t > 0 ? g / t * 100 : 0;
+  document.getElementById("block2").innerHTML = `<h3>Graduate or above</h3>
+    <div class="stat-big"><span style="color:${eduColor(gradIdx, 1)}">${(gradShare).toFixed(0)}%</span></div>
+    <div class="stat-label">of all workers</div>`;
+
+  const hist = EDU_LEVELS.map(() => 0);
+  for (const d of view()) {
+    const i = resolveEdu(d.education_median);
+    if (i >= 0) hist[i] += (d.workers || 0);
+  }
+  const maxH = Math.max(...hist);
+  document.getElementById("block3").innerHTML = `<h3>Workers by education</h3>
+    <div class="histogram">${hist.map((c, i) => `<div class="bar" style="height:${Math.max(2, maxH > 0 ? c / maxH * 100 : 0)}%;background:${eduColor(i, 0.7)}"></div>`).join("")}</div>
+    <div class="hist-labels"><span>${EDU_LEVELS[0].short}</span><span>${EDU_LEVELS[Math.floor(EDU_LEVELS.length / 2)].short}</span><span>${EDU_LEVELS[EDU_LEVELS.length - 1].short}</span></div>`;
+
+  const tiers = EDU_LEVELS.map((e, i) => {
+    const workers = workerCounts(d => resolveEdu(d.education_median) === i);
+    return { label: e.short, workers, color: eduColor(i, 1) };
+  });
+  document.getElementById("block4").innerHTML = `<h3>Education levels</h3><div class="tier-bar">${renderTiers(tiers, total)}</div>`;
+
+  const bandShare = () => EARN_BANDS.map(b => {
+    let bg = 0, bt = 0;
+    for (const d of view()) {
+      const v = d.median_monthly_earnings_inr, k = d.workers || 0;
+      if (k <= 0 || isMissing(v) || v < b.min || v >= b.max) continue;
+      bt += k;
+      if (resolveEdu(d.education_median) >= gradIdx) bg += k;
+    }
+    return { label: b.short, pct: bt > 0 ? bg / bt * 100 : 0 };
+  });
+  document.getElementById("block5").innerHTML = `<h3>% graduate+ by earnings</h3><div class="hbar-chart">${renderHbars(bandShare().map(g => ({
+    label: g.label, val: g.pct.toFixed(0) + "%", pct: g.pct, color: eduColor(gradIdx, 0.8)
+  })))}</div>`;
+
+  const tierShare = EXP_TIERS.map(t => {
+    let tg = 0, tt = 0;
+    for (const d of view()) {
+      const ex = d.exposure_in, k = d.workers || 0;
+      if (k <= 0 || isMissing(ex) || ex < t.lo || ex > t.hi) continue;
+      tt += k;
+      if (resolveEdu(d.education_median) >= gradIdx) tg += k;
+    }
+    return { label: t.short, pct: tt > 0 ? tg / tt * 100 : 0 };
+  });
+  document.getElementById("block6").innerHTML = `<h3>% graduate+ by exposure</h3><div class="hbar-chart">${renderHbars(tierShare.map(g => ({
+    label: g.label, val: g.pct.toFixed(0) + "%", pct: g.pct, color: eduColor(gradIdx, 0.8)
+  })))}</div>`;
+}
+
+function updateFemaleStats(total) {
+  const avg = weightedAvg(d => isMissing(d.female_share) ? null : d.female_share);
+  document.getElementById("block2").innerHTML = `<h3>Female share</h3>
+    <div class="stat-big"><span style="color:${femaleColor(avg, 1)}">${formatPct(avg)}</span></div>
+    <div class="stat-label">worker-weighted</div>`;
+
+  const hist = FEM_BANDS.map(b => {
+    let c = 0;
+    for (const d of view()) {
+      const v = d.female_share;
+      if (!isMissing(v) && v >= b.min && v <= b.max) c += (d.workers || 0);
+    }
+    return c;
+  });
+  const maxH = Math.max(...hist);
+  document.getElementById("block3").innerHTML = `<h3>Workers by female share</h3>
+    <div class="histogram">${hist.map((c, i) => `<div class="bar" style="height:${Math.max(2, maxH > 0 ? c / maxH * 100 : 0)}%;background:${femaleColor(FEM_BANDS[i].mid, 0.7)}"></div>`).join("")}</div>
+    <div class="hist-labels"><span>0%</span><span>50%</span><span>100%</span></div>`;
+
+  const tiers = FEM_BANDS.map(b => {
+    const workers = workerCounts(d => {
+      const v = d.female_share;
+      return !isMissing(v) && v >= b.min && v <= b.max;
+    });
+    return { ...b, label: b.short, workers, color: femaleColor(b.mid, 1) };
+  });
+  document.getElementById("block4").innerHTML = `<h3>Female share bands</h3><div class="tier-bar">${renderTiers(tiers, total)}</div>`;
+
+  document.getElementById("block5").innerHTML = `<h3>Female share by education</h3><div class="hbar-chart">${renderHbars(eduGroupAvg(d => isMissing(d.female_share) ? null : d.female_share).map(g => ({
+    label: g.label, val: formatPct(g.avg), pct: g.avg == null ? 0 : pct01(g.avg), color: femaleColor(g.avg, 0.8)
+  })))}</div>`;
+
+  document.getElementById("block6").innerHTML = `<h3>Female share by earnings</h3><div class="hbar-chart">${renderHbars(earnGroupAvg(d => isMissing(d.female_share) ? null : d.female_share).map(g => ({
+    label: g.label, val: formatPct(g.avg), pct: g.avg == null ? 0 : pct01(g.avg), color: femaleColor(g.avg, 0.8)
+  })))}</div>`;
+}
+
+function updateStats() {
+  const total = view().reduce((s, d) => s + (d.workers || 0), 0);
+  document.getElementById("statTotalWorkers").textContent = formatWorkers(total);
+
+  if (colorMode === "exposure") updateExposureStats(total);
+  else if (colorMode === "earnings") updateEarningsStats(total);
+  else if (colorMode === "education") updateEducationStats(total);
+  else updateFemaleStats(total);
+}
+
+// ── Events ─────────────────────────────────────────────────────────────
+
+canvas.addEventListener("mousemove", (e) => {
+  const hit = hitTest(e.clientX, e.clientY);
+  if (hit !== hovered) { hovered = hit; draw(); }
+  if (hovered) { showTooltip(hovered, e.clientX, e.clientY); canvas.style.cursor = "pointer"; }
+  else { hideTooltip(); canvas.style.cursor = "default"; }
+});
+canvas.addEventListener("mouseleave", () => { hovered = null; hideTooltip(); draw(); });
+function resize() { dpr = window.devicePixelRatio || 1; layout(); draw(); }
+
+// ── Legend gradient ────────────────────────────────────────────────────
+
+function drawGradientLegend() {
+  const c = document.getElementById("gradientLegend");
+  const gctx = c.getContext("2d");
+  for (let x = 0; x < 80; x++) {
+    const t = x / 79;
+    gctx.fillStyle = colorMode === "exposure" ? greenRedCSS(t, 1) : greenRedCSS(1 - t, 1);
+    gctx.fillRect(x, 0, 1, 8);
+  }
+  let cfg = LEGEND_CONFIG[colorMode];
+  if (colorMode === "education") {
+    cfg = { low: EDU_LEVELS[0].short, high: EDU_LEVELS[EDU_LEVELS.length - 1].short };
+  }
+  document.getElementById("legendLow").textContent = cfg.low;
+  document.getElementById("legendHigh").textContent = cfg.high;
+}
+
+// ── Toggles ────────────────────────────────────────────────────────────
+
+function refresh() {
+  updateStats();
+  drawGradientLegend();
+  draw();
+  requestAnimationFrame(resize);
+}
+
+document.getElementById("colorToggle").addEventListener("click", (e) => {
+  const btn = e.target.closest("button");
+  if (!btn || !btn.dataset.mode) return;
+  colorMode = btn.dataset.mode;
+  document.querySelectorAll("#colorToggle button").forEach(b => b.classList.remove("active"));
+  btn.classList.add("active");
+  refresh();
+});
+
+function bindCutToggle(id, apply) {
+  document.getElementById(id).addEventListener("click", (e) => {
+    const btn = e.target.closest("button");
+    if (!btn || !btn.dataset.cut) return;
+    apply(btn.dataset.cut);
+    document.querySelectorAll("#" + id + " button").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    refresh();
+  });
+}
+bindCutToggle("sectorToggle", c => { cutSector = c; });
+bindCutToggle("sexToggle", c => { cutSex = c; });
+
+// ── Load ───────────────────────────────────────────────────────────────
+
+fetch("data.json")
+  .then(r => r.json())
+  .then(d => {
+    meta = d.meta || {};
+    rows = d.occupations || [];
+    for (const r of rows) resolveEdu(r.education_median);
+    const count = meta.occupation_count != null ? meta.occupation_count : rows.length / 9;
+    document.getElementById("introOcc").textContent = count;
+    document.getElementById("introPeriod").textContent = "PLFS, " + (meta.survey_period || "\u2014");
+    const parts = [];
+    if (meta.plfs_release) parts.push("PLFS release " + meta.plfs_release);
+    if (meta.survey_period) parts.push("survey period " + meta.survey_period);
+    if (meta.scaling_factor != null) parts.push("scaling factor " + meta.scaling_factor);
+    if (meta.scoring_model) parts.push("scoring model " + meta.scoring_model);
+    parts.push(count + " occupations (3-digit NCO-2015 minor groups)");
+    document.getElementById("metaLine").textContent = "Data: " + parts.join(" \u00b7 ") + ".";
+    updateStats();
+    drawGradientLegend();
+    resize();
+  });
+
+window.addEventListener("resize", resize);
+</script>
+</body>
+</html>

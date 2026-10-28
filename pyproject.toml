@@ -1,0 +1,20 @@
+[project]
+name = "jobs-india"
+version = "0.1.0"
+description = "India job market treemap, built from PLFS unit-level microdata"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "pandas>=2.2.0",
+    "pyarrow>=17.0.0",
+    "numpy>=1.26.0",
+    "pypdf>=5.0.0",
+    "httpx>=0.28.1",
+    "python-dotenv>=1.2.2",
+]
+
+[dependency-groups]
+dev = ["ruff>=0.6.0"]
+
+[tool.ruff]
+line-length = 100
