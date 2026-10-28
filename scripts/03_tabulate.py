@@ -65,6 +65,7 @@ OUT_COLUMNS = [
     "nco_code",
     "cut_sector",
     "cut_sex",
+    "cut_age",
     "workers",
     "sample_n",
     "female_share",
@@ -82,6 +83,7 @@ CELL_STAT_COLUMNS = [
     "nco_code",
     "cut_sector",
     "cut_sex",
+    "cut_age",
     "workers_w",
     "sample_n",
     "female_share",
@@ -93,9 +95,18 @@ CELL_STAT_COLUMNS = [
     "education_rank_median",
 ]
 
-# The nine filter combinations from section 2.11, in a fixed display order.
+# The filter combinations from section 2.11, in a fixed display order.
+# 3 sectors x 3 sexes x 5 age bands = 45 cuts.
 CUT_SECTORS = ["all", "rural", "urban"]
 CUT_SEXES = ["all", "female", "male"]
+# Age bands in completed years. 15-29 matches the PLFS youth definition.
+AGE_BANDS = {
+    "15-29": (15, 29),
+    "30-44": (30, 44),
+    "45-59": (45, 59),
+    "60+": (60, 200),
+}
+CUT_AGES = ["all", *AGE_BANDS]
 
 # Casual earnings fields: activity 1 and 2, days 1 to 7 (section 2.6).
 CASUAL_COLUMNS = [f"ern{i}{d}" for i in (1, 2) for d in range(1, 8)]
@@ -185,8 +196,10 @@ def prepare_workers(per: pd.DataFrame) -> pd.DataFrame:
         }
     )
 
-    age_ok = numeric(per["age"]) >= 15
-    
+    age = numeric(per["age"])
+    df["age"] = age
+    age_ok = age >= 15
+
     # ---- Monthly earnings, harmonised per section 2.6 ---------------------
     # Regular: ern_reg as reported. Self employed: ern_self as reported.
     # Casual: sum the 14 daily fields ern11..ern27 for a weekly total, then
@@ -283,7 +296,7 @@ def cell_stats(g: pd.DataFrame) -> dict:
     }
 
 
-def tabulate_cut(df: pd.DataFrame, sector: str, sex: str) -> pd.DataFrame:
+def tabulate_cut(df: pd.DataFrame, sector: str, sex: str, age: str) -> pd.DataFrame:
     # Missing sex is neither female nor male, and missing sec is neither rural
     # nor urban, so such records fall only in the 'all' cuts. Sex "3"
     # (transgender) belongs to 'all' and to neither male nor female. The
@@ -298,7 +311,12 @@ def tabulate_cut(df: pd.DataFrame, sector: str, sex: str) -> pd.DataFrame:
         "female": df["female"],
         "male": df["male"],
     }[sex])
-    sub = df[sector_mask & sex_mask]
+    if age == "all":
+        age_mask = np.ones(len(df), dtype=bool)
+    else:
+        lo, hi = AGE_BANDS[age]
+        age_mask = np.asarray(df["age"].between(lo, hi))
+    sub = df[sector_mask & sex_mask & age_mask]
 
     rows = []
     for code, g in sub.groupby("occupation", sort=True):
@@ -306,13 +324,14 @@ def tabulate_cut(df: pd.DataFrame, sector: str, sex: str) -> pd.DataFrame:
         stats["nco_code"] = str(code).zfill(3)
         stats["cut_sector"] = sector
         stats["cut_sex"] = sex
+        stats["cut_age"] = age
         rows.append(stats)
     return pd.DataFrame(rows, columns=CELL_STAT_COLUMNS)
 
 
 def main() -> None:
     parser = argparse.ArgumentParser(
-        description="Tabulate PLFS 2025 into NCO 3-digit cells with all nine sector/sex cuts."
+        description="Tabulate PLFS 2025 into NCO 3-digit cells with all sector/sex/age cuts."
     )
     parser.add_argument(
         "--person-file",
@@ -372,7 +391,10 @@ def main() -> None:
     print(f"scaling factor: {factor:.6f}")
 
     frame = pd.concat(
-        [tabulate_cut(workers, s, x) for s in CUT_SECTORS for x in CUT_SEXES],
+        [
+            tabulate_cut(workers, s, x, a)
+            for s in CUT_SECTORS for x in CUT_SEXES for a in CUT_AGES
+        ],
         ignore_index=True,
     )
 

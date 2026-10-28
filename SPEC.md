@@ -247,17 +247,24 @@ Record the factor and the target in the output. A reader must be able to see
 them. State on the page that counts are PLFS estimates rescaled to the
 projected 15-plus population.
 
-### 2.11 Scope is all-India, with two filters
+### 2.11 Scope is all-India, with three filters
 
 State-level cells are too thin at 3-digit NCO. Defer state drill-down.
 
-Ship two filters, because PLFS supports both well at national level:
+Ship three filters, because PLFS supports them at national level:
 
 - Rural, urban, or all.
 - Female, male, or all.
+- Age: all, 15-29, 30-44, 45-59, or 60+. The 15-29 band matches the PLFS
+  youth definition.
 
-Precompute all nine combinations. The result is 1,141 rows in
-`data/occupations_in.csv`, which is small enough to ship in one JSON file.
+Precompute all 45 combinations. The result is 5,464 rows in
+`data/occupations_in.csv`. Age cells are thinner, so the suppression rules in
+section 2.13 bite harder there: at all/all, 65 of 122 groups in the 60+ band
+are flagged low confidence.
+
+The page also has an agriculture toggle. It hides NCO division 6 and group 921
+(agricultural labourers) on the client, so it needs no extra cuts.
 `data/tabulate_meta.json` records the row count and the scaling factor.
 
 ### 2.12 Female share is a color layer
@@ -296,7 +303,11 @@ Every number in this tool comes from an Indian source.
 
 ## 3. Output schema
 
-One record per minor group, per filter combination.
+One record per minor group, per filter combination, in `occupations`. Fields
+that are the same in every cut (`title`, `division`, `subdivision`,
+`isco_code`, `exposure_in`, `exposure_in_rationale`) are stored once per code
+in a top-level `groups` object keyed by `nco_code`, and the page joins them
+back onto each row. This keeps `site/data.json` near 2 MB.
 
 | Field | Type | Note |
 |---|---|---|
@@ -307,6 +318,7 @@ One record per minor group, per filter combination.
 | `isco_code` | string | ISCO-08 equivalent. NCO-2015 aligns to ISCO-08 at 3 digits, so the code carries over |
 | `cut_sector` | string | `all`, `rural` or `urban` |
 | `cut_sex` | string | `all`, `female` or `male` |
+| `cut_age` | string | `all`, `15-29`, `30-44`, `45-59` or `60+` |
 | `workers` | int | PLFS estimate, scaled by the factor in `meta` |
 | `sample_n` | int | Unweighted count |
 | `female_share` | float | 0 to 1 |
@@ -322,7 +334,7 @@ One record per minor group, per filter combination.
 
 Record once, at the top level of `site/data.json`, under `meta`: the survey
 period, the scaling factor, the PLFS release identifier and the model used for
-scoring. `site/data.json` holds 1,132 rows today. One NCO code, 343, has
+scoring. `site/data.json` holds 5,419 rows today. One NCO code, 343, has
 employment but no parsed NCO description, so it does not appear in the site
 data.
 

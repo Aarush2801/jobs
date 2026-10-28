@@ -10,8 +10,14 @@
 :root {
   --bg: #0a0a0f;
   --bg2: #12121a;
+  --card: rgba(255,255,255,0.025);
+  --line: rgba(255,255,255,0.08);
+  --line2: rgba(255,255,255,0.16);
   --fg: #e0e0e8;
   --fg2: #888894;
+  --gutter: 24px;
+  --gap: 12px;
+  --ctl-h: 30px;
 }
 
 body {
@@ -19,43 +25,42 @@ body {
   color: var(--fg);
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
 }
+a { color: var(--fg); text-decoration: underline; text-decoration-color: var(--line2); text-underline-offset: 2px; }
+a:hover { text-decoration-color: var(--fg); }
 
 #wrapper {
   max-width: 1400px;
   width: 100%;
   margin: 0 auto;
-  padding-bottom: 250px;
+  padding-bottom: 32px;
 }
 
 #header {
-  padding: 20px 28px 16px;
-  flex-shrink: 0;
+  padding: 24px var(--gutter) 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
 }
 
-.intro {
-  margin-bottom: 18px;
-}
+/* ── Intro ── */
 .intro h1 {
-  font-size: 26px;
+  font-size: 24px;
   font-weight: 700;
   letter-spacing: -0.02em;
-  margin-bottom: 12px;
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  flex-wrap: wrap;
+  margin-bottom: 6px;
 }
 .intro p {
-  font-size: 15px;
-  line-height: 1.6;
-  color: var(--fg2);
-  margin-bottom: 8px;
-}
-.intro strong, .intro b { color: var(--fg); font-weight: 600; }
-
-.intro details { margin: 10px 0; }
-.intro summary {
   font-size: 14px;
+  line-height: 1.55;
+  color: var(--fg2);
+  max-width: 900px;
+}
+.intro b { color: var(--fg); font-weight: 600; }
+.meta-line { font-size: 12px; margin-top: 4px; }
+
+.intro details { margin-top: 6px; }
+.intro summary {
+  font-size: 13px;
   color: var(--fg2);
   cursor: pointer;
   user-select: none;
@@ -63,127 +68,125 @@ body {
 .intro summary:hover { color: var(--fg); }
 .intro .prompt-box {
   margin-top: 8px;
-  background: rgba(0,0,0,0.3);
-  border: 1px solid rgba(255,255,255,0.06);
+  max-width: 900px;
+  background: var(--card);
+  border: 1px solid var(--line);
   border-radius: 6px;
   padding: 12px 16px;
   font-size: 13px;
   line-height: 1.5;
   color: var(--fg2);
-  max-height: 300px;
-  overflow-y: auto;
   white-space: pre-wrap;
-  word-break: break-word;
 }
 
-.stats-row {
+/* ── Controls: one toolbar, every group the same shape ── */
+.toolbar {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px 28px;
-  align-items: flex-start;
-  margin-bottom: 12px;
+  gap: var(--gap) 20px;
+  padding: var(--gap) 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
 }
-
-.stat-section {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
-.stat-section h3 {
+.ctl { display: flex; flex-direction: column; gap: 6px; }
+.ctl h3, .card h3 {
   font-size: 11px;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: var(--fg2);
 }
-.stat-big {
-  font-size: 32px;
-  font-weight: 700;
-  letter-spacing: -0.03em;
-  line-height: 1;
+.seg {
+  display: inline-flex;
+  border: 1px solid var(--line2);
+  border-radius: 6px;
+  overflow: hidden;
 }
-.stat-label {
-  font-size: 11px;
-  color: var(--fg2);
-}
-
-.tier-bar { display: flex; flex-direction: column; gap: 3px; }
-.tier-row { display: flex; align-items: center; gap: 6px; font-size: 12px; }
-.tier-color { width: 10px; height: 10px; border-radius: 2px; flex-shrink: 0; }
-.tier-name { flex: 1; color: var(--fg2); white-space: nowrap; }
-.tier-workers { text-align: right; white-space: nowrap; }
-.tier-pct { text-align: right; width: 30px; color: var(--fg2); font-size: 11px; }
-
-.histogram { display: flex; align-items: flex-end; gap: 2px; height: 54px; }
-.histogram .bar { flex: 1; border-radius: 1px 1px 0 0; min-height: 1px; }
-.hist-labels { display: flex; justify-content: space-between; font-size: 10px; color: var(--fg2); margin-top: 2px; }
-
-.hbar-chart { display: flex; flex-direction: column; gap: 3px; }
-.hbar-row { display: flex; align-items: center; gap: 6px; font-size: 12px; }
-.hbar-label { width: 100px; flex-shrink: 0; color: var(--fg2); font-size: 11px; text-align: right; }
-.hbar-track { flex: 1; height: 12px; background: rgba(255,255,255,0.04); border-radius: 2px; overflow: hidden; min-width: 36px; }
-.hbar-fill { height: 100%; border-radius: 2px; }
-.hbar-val { width: 74px; flex-shrink: 0; font-size: 11px; color: var(--fg); text-align: right; }
-
-.controls-row {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  flex-wrap: wrap;
-  margin-bottom: 14px;
-}
-
-.color-toggle {
-  display: flex;
-  gap: 4px;
-}
-.color-toggle button {
-  padding: 6px 14px;
+.seg button {
+  height: var(--ctl-h);
+  padding: 0 12px;
+  font: inherit;
   font-size: 12px;
   font-weight: 500;
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 4px;
+  border: 0;
+  border-left: 1px solid var(--line);
   background: transparent;
   color: var(--fg2);
   cursor: pointer;
-  transition: all 0.15s;
+  white-space: nowrap;
+  transition: background 0.15s, color 0.15s;
 }
-.color-toggle button.active {
-  background: rgba(255,255,255,0.08);
-  color: var(--fg);
-  border-color: rgba(255,255,255,0.2);
-}
-.color-toggle button:hover:not(.active) {
-  background: rgba(255,255,255,0.04);
-}
+.seg button:first-child { border-left: 0; }
+.seg button:hover:not(.active) { background: rgba(255,255,255,0.04); color: var(--fg); }
+.seg button.active { background: rgba(255,255,255,0.12); color: var(--fg); }
 
-.gradient-legend {
+/* ── Stat cards: equal width, equal height ── */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: var(--gap);
+}
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 12px 14px;
   display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+.stat-big {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  white-space: nowrap;
+}
+.stat-label { font-size: 11px; color: var(--fg2); }
+.card-split { display: flex; flex-direction: column; gap: 14px; }
+.card-split > div { display: flex; flex-direction: column; gap: 4px; }
+
+.tier-bar, .hbar-chart { display: flex; flex-direction: column; gap: 4px; }
+.tier-row, .hbar-row { display: flex; align-items: center; gap: 6px; font-size: 12px; min-height: 16px; }
+.tier-color { width: 10px; height: 10px; border-radius: 2px; flex-shrink: 0; }
+.tier-name { flex: 1; color: var(--fg2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.tier-workers { text-align: right; white-space: nowrap; }
+.tier-pct { text-align: right; width: 32px; color: var(--fg2); font-size: 11px; }
+
+.histogram { display: flex; align-items: flex-end; gap: 2px; flex: 1; min-height: 80px; }
+.histogram .bar { flex: 1; border-radius: 1px 1px 0 0; min-height: 1px; }
+.hist-labels { display: flex; justify-content: space-between; font-size: 10px; color: var(--fg2); }
+
+.hbar-label { width: 84px; flex-shrink: 0; color: var(--fg2); font-size: 11px; text-align: right; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.hbar-track { flex: 1; height: 10px; background: rgba(255,255,255,0.04); border-radius: 2px; overflow: hidden; min-width: 24px; }
+.hbar-fill { height: 100%; border-radius: 2px; }
+.hbar-val { width: 52px; flex-shrink: 0; font-size: 11px; color: var(--fg); text-align: right; white-space: nowrap; }
+
+/* ── Legend strip above the map ── */
+.legend-row {
+  display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 6px;
+  gap: 8px 20px;
   font-size: 11px;
   color: var(--fg2);
 }
+.gradient-legend, .hatch-note { display: flex; align-items: center; gap: 6px; }
 .gradient-legend canvas { border-radius: 2px; }
-
-.hatch-note {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 11px;
-  color: var(--fg2);
-}
 .hatch-sample {
-  width: 14px;
-  height: 14px;
+  width: 12px;
+  height: 12px;
   border-radius: 2px;
   flex-shrink: 0;
   background: repeating-linear-gradient(45deg, rgba(0,0,0,0) 0 3px, rgba(0,0,0,0.35) 3px 4px), #8a8a94;
 }
+#cutNote { margin-left: auto; }
 
 canvas#canvas {
   display: block;
   cursor: default;
+  margin-top: 8px;
 }
 
 #tooltip {
@@ -208,11 +211,12 @@ canvas#canvas {
 #tooltip .tt-stats .label { color: var(--fg2); }
 #tooltip .tt-stats .value { color: var(--fg); text-align: right; }
 #tooltip .tt-rationale { font-size: 11px; color: var(--fg2); margin-top: 8px; line-height: 1.4; border-top: 1px solid rgba(255,255,255,0.06); padding-top: 8px; }
+#tooltip .tt-rationale:empty { display: none; }
 
 .caveats {
-  margin: 18px 28px 0;
-  padding-top: 14px;
-  border-top: 1px solid rgba(255,255,255,0.08);
+  margin: 16px var(--gutter) 0;
+  padding-top: var(--gap);
+  border-top: 1px solid var(--line);
 }
 .caveats h3 {
   font-size: 11px;
@@ -220,17 +224,32 @@ canvas#canvas {
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: var(--fg2);
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
-.caveats ul { list-style: none; }
+.caveats ul {
+  list-style: disc;
+  padding-left: 16px;
+  columns: 2 320px;
+  column-gap: 32px;
+}
 .caveats li {
   font-size: 12px;
   color: var(--fg2);
   line-height: 1.7;
 }
-.caveats li::before {
-  content: "\2014 ";
-  color: rgba(255,255,255,0.3);
+
+@media (max-width: 1100px) {
+  .stats-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .card-split { grid-column: 1 / -1; flex-direction: row; gap: 32px; }
+}
+@media (max-width: 640px) {
+  :root { --gutter: 16px; }
+  .stats-grid { grid-template-columns: minmax(0, 1fr); }
+  .stat-big { font-size: 22px; }
+  #cutNote { margin-left: 0; }
+  .ctl { width: 100%; }
+  .seg { display: flex; }
+  .seg button { flex: 1; padding: 0 6px; }
 }
 </style>
 </head>
@@ -240,10 +259,10 @@ canvas#canvas {
 <div id="header">
   <div class="intro">
     <h1>India Job Market Visualizer</h1>
-    <p>This is a research tool that visualizes <b id="introOcc">&mdash;</b> occupations from the <a href="https://microdata.gov.in/NADA/index.php/catalog/284">PLFS</a> &mdash; the Periodic Labour Force Survey, India's official employment survey &mdash; covering the period <b id="introPeriod">&mdash;</b>. Each rectangle is an occupation (a 3-digit NCO-2015 minor group), its <b>area</b> is proportional to total employment, and rectangles are grouped by NCO division. <b>Color</b> shows the selected metric: median monthly earnings, education level of workers, AI exposure, or female share. Hover any tile for details. This is not a report, a paper, or a serious economic publication; it is a development tool for exploring PLFS data visually.</p>
-    <p id="metaLine"></p>
+    <p>Every rectangle is one of <b id="introOcc">126</b> occupation groups (3-digit NCO-2015) from <a href="https://microdata.gov.in/NADA/index.php/catalog/284">PLFS</a>, India's official labour force survey, for <b id="introPeriod">2025</b>. Size is the number of workers. Colour is the layer you pick below. Hover a tile for details.</p>
+    <p class="meta-line" id="metaLine"></p>
     <details>
-      <summary>How the AI exposure score is estimated</summary>
+      <summary>How the AI exposure score works</summary>
       <div class="prompt-box">A language model reads the official NCO-2015 description of each 3-digit occupation group, the titles of its 4-digit unit groups, its status mix, and its informality share. It rates exposure on a 0 to 10 scale:
 
 - 0-1: almost entirely physical or hands-on work. AI has little effect.
@@ -257,51 +276,74 @@ The India rubric also weighs the cost of automation against the prevailing local
     </details>
   </div>
 
-  <div class="controls-row">
-    <div class="stat-section">
+  <div class="toolbar">
+    <div class="ctl">
       <h3>Layer</h3>
-      <div class="color-toggle" id="colorToggle">
-        <button data-mode="earnings" class="active">Median Earnings</button>
-        <button data-mode="education">Education Level</button>
-        <button data-mode="exposure">AI Exposure</button>
-        <button data-mode="female">Female Share</button>
+      <div class="seg" id="colorToggle">
+        <button data-mode="earnings" class="active">Earnings</button>
+        <button data-mode="education">Education</button>
+        <button data-mode="exposure">AI exposure</button>
+        <button data-mode="female">Female share</button>
       </div>
     </div>
-    <div class="gradient-legend">
-      <span id="legendLow">Low</span>
-      <canvas id="gradientLegend" width="80" height="8"></canvas>
-      <span id="legendHigh">High</span>
-    </div>
-    <span class="hatch-note"><span class="hatch-sample"></span>hatched = low confidence (small sample)</span>
-    <div class="stat-section">
+    <div class="ctl">
       <h3>Sector</h3>
-      <div class="color-toggle" id="sectorToggle">
+      <div class="seg" id="sectorToggle">
         <button data-cut="all" class="active">All</button>
         <button data-cut="rural">Rural</button>
         <button data-cut="urban">Urban</button>
       </div>
     </div>
-    <div class="stat-section">
+    <div class="ctl">
       <h3>Gender</h3>
-      <div class="color-toggle" id="sexToggle">
+      <div class="seg" id="sexToggle">
         <button data-cut="all" class="active">All</button>
         <button data-cut="female">Female</button>
         <button data-cut="male">Male</button>
       </div>
     </div>
+    <div class="ctl">
+      <h3>Age</h3>
+      <div class="seg" id="ageToggle">
+        <button data-cut="all" class="active">All</button>
+        <button data-cut="15-29">15-29</button>
+        <button data-cut="30-44">30-44</button>
+        <button data-cut="45-59">45-59</button>
+        <button data-cut="60+">60+</button>
+      </div>
+    </div>
+    <div class="ctl">
+      <h3>Agriculture</h3>
+      <div class="seg" id="agriToggle">
+        <button data-cut="show" class="active">Show</button>
+        <button data-cut="hide">Hide</button>
+      </div>
+    </div>
   </div>
 
-  <div class="stats-row">
-    <div class="stat-section">
-      <h3>Total workers</h3>
-      <div class="stat-big" id="statTotalWorkers">&mdash;</div>
-      <div class="stat-label">current cut</div>
+  <div class="stats-grid">
+    <div class="card card-split">
+      <div>
+        <h3>Total workers</h3>
+        <div class="stat-big" id="statTotalWorkers">...</div>
+        <div class="stat-label" id="statTotalLabel">current filters</div>
+      </div>
+      <div id="block2"></div>
     </div>
-    <div class="stat-section" id="block2"></div>
-    <div class="stat-section" id="block3"></div>
-    <div class="stat-section" id="block4"></div>
-    <div class="stat-section" id="block5"></div>
-    <div class="stat-section" id="block6"></div>
+    <div class="card" id="block3"></div>
+    <div class="card" id="block4"></div>
+    <div class="card" id="block5"></div>
+    <div class="card" id="block6"></div>
+  </div>
+
+  <div class="legend-row">
+    <span class="gradient-legend">
+      <span id="legendLow">Low</span>
+      <canvas id="gradientLegend" width="80" height="8"></canvas>
+      <span id="legendHigh">High</span>
+    </span>
+    <span class="hatch-note"><span class="hatch-sample"></span>Hatched: small sample, read with care</span>
+    <span id="cutNote"></span>
   </div>
 </div>
 
@@ -315,6 +357,7 @@ The India rubric also weighs the cost of automation against the prevailing local
     <li>It reports the education workers hold, not the education a job requires.</li>
     <li>Self-employment earnings overstate labour income.</li>
     <li>Exposure scores are model estimates, not predictions of job loss.</li>
+    <li>Narrow filters (for example 60+ and female) leave many groups with small samples.</li>
   </ul>
 </div>
 </div>
@@ -333,6 +376,8 @@ The India rubric also weighs the cost of automation against the prevailing local
 let colorMode = "earnings";
 let cutSector = "all";
 let cutSex = "all";
+let cutAge = "all";
+let hideAgri = false;
 
 function boostContrast(t) {
   const c = (t - 0.5) * 2;
@@ -398,17 +443,19 @@ function tileColorCSS(d, alpha) {
 
 // ── Education levels (PLFS general education levels) ────────────────────
 
+// Names match the labels 03_tabulate.py writes. The three "Literate without
+// formal schooling, ..." variants fold into one level by prefix match.
 const EDU_LEVELS = [
   { name: "Not literate", short: "Not literate" },
-  { name: "Literate without formal schooling", short: "Lit. no formal" },
+  { name: "Literate without formal schooling", short: "No schooling" },
   { name: "Below primary", short: "Below primary" },
   { name: "Primary", short: "Primary" },
   { name: "Middle", short: "Middle" },
   { name: "Secondary", short: "Secondary" },
   { name: "Higher secondary", short: "Higher sec." },
-  { name: "Diploma/Certificate course", short: "Diploma" },
+  { name: "Diploma or certificate", short: "Diploma" },
   { name: "Graduate", short: "Graduate" },
-  { name: "Post graduate and above", short: "Post grad+" },
+  { name: "Postgraduate and above", short: "Postgrad+" },
 ];
 
 const eduIndex = new Map();
@@ -418,7 +465,7 @@ function resolveEdu(v) {
   if (eduIndex.has(v)) return eduIndex.get(v);
   const s = String(v).toLowerCase();
   let i = EDU_LEVELS.findIndex(e => e.name.toLowerCase() === s);
-  if (i < 0) i = EDU_LEVELS.findIndex(e => s.includes(e.name.toLowerCase()));
+  if (i < 0) i = EDU_LEVELS.findIndex(e => s.startsWith(e.name.toLowerCase()));
   if (i < 0) {
     EDU_LEVELS.push({ name: String(v), short: String(v).slice(0, 14) });
     i = EDU_LEVELS.length - 1;
@@ -435,8 +482,10 @@ function eduShort(v) {
 // ── Formatting, India specific ──────────────────────────────────────────
 
 // Indian grouping: last 3 digits together, then groups of 2.
+const NA = "n/a";
+
 function formatIndian(n) {
-  if (n == null) return "\u2014";
+  if (n == null) return NA;
   let s = String(Math.round(n));
   if (s.length <= 3) return s;
   const last3 = s.slice(-3);
@@ -451,19 +500,27 @@ function trimZeroes(s) { return s.replace(/\.?0+$/, ""); }
 
 // Worker counts with lakh and crore labels. 1 lakh = 100000, 1 crore = 10000000.
 function formatWorkers(n) {
-  if (n == null) return "\u2014";
+  if (n == null) return NA;
   if (n >= 1e7) return trimZeroes((n / 1e7).toFixed(2)) + " crore";
   if (n >= 1e5) return trimZeroes((n / 1e5).toFixed(2)) + " lakh";
   return formatIndian(n);
 }
 
 function formatMonthlyRs(n, short) {
-  if (n == null) return "\u2014";
+  if (n == null) return NA;
   return "Rs " + formatIndian(n) + (short ? " / mo" : " / month");
 }
 
+// Compact rupees for narrow bar rows: Rs 950, Rs 12.3K, Rs 1.2L.
+function formatRsCompact(n) {
+  if (n == null) return NA;
+  if (n >= 1e5) return "Rs " + trimZeroes((n / 1e5).toFixed(1)) + "L";
+  if (n >= 1e3) return "Rs " + trimZeroes((n / 1e3).toFixed(1)) + "K";
+  return "Rs " + Math.round(n);
+}
+
 function formatPct(v, digits) {
-  if (v == null) return "\u2014";
+  if (v == null) return NA;
   const d = digits == null ? 0 : digits;
   return (v * 100).toFixed(d) + "%";
 }
@@ -568,8 +625,12 @@ function worstAspect(row, rowSum, side, totalArea, availableExtent) {
 let meta = {};
 let rows = [];
 
+// Agriculture: NCO division 6 plus the farm labourers in 921.
+function isAgri(d) { return String(d.division) === "6" || d.nco_code === "921"; }
+
 function view() {
-  return rows.filter(d => d.cut_sector === cutSector && d.cut_sex === cutSex);
+  return rows.filter(d => d.cut_sector === cutSector && d.cut_sex === cutSex &&
+    d.cut_age === cutAge && !(hideAgri && isAgri(d)));
 }
 
 // ── Rendering ──────────────────────────────────────────────────────────
@@ -579,15 +640,19 @@ let hovered = null;
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 let dpr = window.devicePixelRatio || 1;
-const MARGIN = 12, GAP = 1.5;
+const GAP = 1.5;
+function gutter() {
+  return parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--gutter")) || 24;
+}
 
 function layout() {
   const wrapper = document.getElementById("wrapper");
   const w = wrapper.clientWidth;
-  const h = Math.round(w * 3 / 4);
+  const h = Math.round((w - gutter() * 2) * 0.68);
   canvas.width = w * dpr; canvas.height = h * dpr;
   canvas.style.width = w + "px"; canvas.style.height = h + "px";
-  const tx = MARGIN, ty = MARGIN, tw = w - MARGIN * 2, th = h - MARGIN * 2;
+  const m = gutter();
+  const tx = m, ty = 0, tw = w - m * 2, th = h;
   const byDivision = {};
   for (const d of view()) {
     const key = String(d.division);
@@ -696,20 +761,20 @@ function showTooltip(d, mx, my) {
   tt.querySelector(".tt-title").textContent = d.title;
   tt.querySelector(".tt-exposure").innerHTML = tooltipHighlight(d);
   let rows = `
-    <span class="label">NCO code</span><span class="value">${d.nco_code == null ? "\u2014" : d.nco_code}</span>
+    <span class="label">NCO code</span><span class="value">${d.nco_code == null ? NA : d.nco_code}</span>
     <span class="label">Workers</span><span class="value">${formatWorkers(d.workers)}</span>
     <span class="label">Median monthly earnings</span><span class="value">${formatMonthlyRs(d.median_monthly_earnings_inr)}</span>
     <span class="label">Earnings coverage</span><span class="value">${formatPct(d.earnings_coverage)}</span>
-    <span class="label">Education</span><span class="value">${isMissing(d.education_median) ? "\u2014" : d.education_median}</span>
+    <span class="label">Education</span><span class="value">${isMissing(d.education_median) ? NA : d.education_median}</span>
     <span class="label">Informality share</span><span class="value">${formatPct(d.informality_share)}</span>
     <span class="label">Self-employed</span><span class="value">${formatPct(mix.self_employed)}</span>
     <span class="label">Regular</span><span class="value">${formatPct(mix.regular)}</span>
     <span class="label">Casual</span><span class="value">${formatPct(mix.casual)}</span>
     <span class="label">Female share</span><span class="value">${formatPct(d.female_share)}</span>
-    <span class="label">Sample (n)</span><span class="value">${d.sample_n == null ? "\u2014" : formatIndian(d.sample_n)}</span>
-    <span class="label">AI exposure</span><span class="value">${isMissing(d.exposure_in) ? "\u2014" : d.exposure_in + "/10"}</span>`;
+    <span class="label">Sample (n)</span><span class="value">${d.sample_n == null ? NA : formatIndian(d.sample_n)}</span>
+    <span class="label">AI exposure</span><span class="value">${isMissing(d.exposure_in) ? NA : d.exposure_in + "/10"}</span>`;
   if (d.low_confidence) {
-    rows += `<span class="label">Confidence</span><span class="value" style="color:#e8b94b;">Low \u2014 small sample</span>`;
+    rows += `<span class="label">Confidence</span><span class="value" style="color:#e8b94b;">Low (small sample)</span>`;
   }
   tt.querySelector(".tt-stats").innerHTML = rows;
   tt.querySelector(".tt-rationale").textContent = colorMode === "exposure" ? (d.exposure_in_rationale || "") : "";
@@ -787,7 +852,7 @@ function renderTiers(tiers, totalWorkers) {
 }
 
 function renderHbars(items) {
-  return items.map(it => `<div class="hbar-row">
+  return items.filter(it => it.val !== NA).map(it => `<div class="hbar-row">
     <span class="hbar-label">${it.label}</span>
     <div class="hbar-track"><div class="hbar-fill" style="width:${it.pct}%;background:${it.color}"></div></div>
     <span class="hbar-val">${it.val}</span>
@@ -799,7 +864,7 @@ function renderHbars(items) {
 function updateExposureStats(total) {
   const avg = weightedAvg(d => isMissing(d.exposure_in) ? null : d.exposure_in);
   document.getElementById("block2").innerHTML = `<h3>Avg. exposure</h3>
-    <div class="stat-big"><span style="color:${expColor(avg, 1)}">${avg == null ? "\u2014" : avg.toFixed(1)}</span></div>
+    <div class="stat-big"><span style="color:${expColor(avg, 1)}">${avg == null ? NA : avg.toFixed(1)}</span></div>
     <div class="stat-label">worker-weighted, 0\u201310</div>`;
 
   const hist = new Array(11).fill(0);
@@ -815,12 +880,12 @@ function updateExposureStats(total) {
   document.getElementById("block4").innerHTML = `<h3>Exposure tiers</h3><div class="tier-bar">${renderTiers(tiers, total)}</div>`;
 
   document.getElementById("block5").innerHTML = `<h3>Exposure by education</h3><div class="hbar-chart">${renderHbars(eduGroupAvg(d => isMissing(d.exposure_in) ? null : d.exposure_in).map(g => ({
-    label: g.label, val: g.avg == null ? "\u2014" : g.avg.toFixed(1),
+    label: g.label, val: g.avg == null ? NA : g.avg.toFixed(1),
     pct: g.avg == null ? 0 : pct01(g.avg / 10), color: expColor(g.avg, 0.8)
   })))}</div>`;
 
   document.getElementById("block6").innerHTML = `<h3>Exposure by earnings</h3><div class="hbar-chart">${renderHbars(earnGroupAvg(d => isMissing(d.exposure_in) ? null : d.exposure_in).map(g => ({
-    label: g.label, val: g.avg == null ? "\u2014" : g.avg.toFixed(1),
+    label: g.label, val: g.avg == null ? NA : g.avg.toFixed(1),
     pct: g.avg == null ? 0 : pct01(g.avg / 10), color: expColor(g.avg, 0.8)
   })))}</div>`;
 }
@@ -854,12 +919,12 @@ function updateEarningsStats(total) {
   document.getElementById("block4").innerHTML = `<h3>Earnings tiers</h3><div class="tier-bar">${renderTiers(tiers, total)}</div>`;
 
   document.getElementById("block5").innerHTML = `<h3>Avg earnings by education</h3><div class="hbar-chart">${renderHbars(eduGroupAvg(d => isMissing(d.median_monthly_earnings_inr) ? null : d.median_monthly_earnings_inr).map(g => ({
-    label: g.label, val: formatMonthlyRs(g.avg, true),
+    label: g.label, val: formatRsCompact(g.avg),
     pct: earningScalePct(g.avg), color: earnColor(g.avg, 0.8)
   })))}</div>`;
 
   document.getElementById("block6").innerHTML = `<h3>Avg earnings by exposure</h3><div class="hbar-chart">${renderHbars(tierGroupAvg(d => isMissing(d.median_monthly_earnings_inr) ? null : d.median_monthly_earnings_inr).map(g => ({
-    label: g.label, val: formatMonthlyRs(g.avg, true),
+    label: g.label, val: formatRsCompact(g.avg),
     pct: earningScalePct(g.avg), color: earnColor(g.avg, 0.8)
   })))}</div>`;
 }
@@ -1004,6 +1069,7 @@ function drawGradientLegend() {
 // ── Toggles ────────────────────────────────────────────────────────────
 
 function refresh() {
+  updateCutNote();
   updateStats();
   drawGradientLegend();
   draw();
@@ -1031,6 +1097,20 @@ function bindCutToggle(id, apply) {
 }
 bindCutToggle("sectorToggle", c => { cutSector = c; });
 bindCutToggle("sexToggle", c => { cutSex = c; });
+bindCutToggle("ageToggle", c => { cutAge = c; });
+bindCutToggle("agriToggle", c => { hideAgri = c === "hide"; });
+
+// Plain-language summary of the active filters, shown beside the legend.
+function updateCutNote() {
+  const parts = [];
+  if (cutSector !== "all") parts.push(cutSector);
+  if (cutSex !== "all") parts.push(cutSex);
+  if (cutAge !== "all") parts.push("aged " + cutAge);
+  let note = parts.length ? "Showing " + parts.join(", ") + " workers" : "Showing all workers 15+";
+  if (hideAgri) note += ", agriculture hidden";
+  document.getElementById("cutNote").textContent = note;
+  document.getElementById("statTotalLabel").textContent = hideAgri ? "excluding agriculture" : "current filters";
+}
 
 // ── Load ───────────────────────────────────────────────────────────────
 
@@ -1038,18 +1118,20 @@ fetch("data.json")
   .then(r => r.json())
   .then(d => {
     meta = d.meta || {};
-    rows = d.occupations || [];
+    // Each row carries one cut; title, division and AI score live once per
+    // code in d.groups.
+    const groups = d.groups || {};
+    rows = (d.occupations || []).map(r => ({ ...groups[r.nco_code], ...r }));
     for (const r of rows) resolveEdu(r.education_median);
-    const count = meta.occupation_count != null ? meta.occupation_count : rows.length / 9;
+    const count = meta.occupation_count != null ? meta.occupation_count : Object.keys(groups).length;
     document.getElementById("introOcc").textContent = count;
-    document.getElementById("introPeriod").textContent = "PLFS, " + (meta.survey_period || "\u2014");
+    if (meta.survey_period) document.getElementById("introPeriod").textContent = meta.survey_period;
     const parts = [];
-    if (meta.plfs_release) parts.push("PLFS release " + meta.plfs_release);
-    if (meta.survey_period) parts.push("survey period " + meta.survey_period);
-    if (meta.scaling_factor != null) parts.push("scaling factor " + meta.scaling_factor);
-    if (meta.scoring_model) parts.push("scoring model " + meta.scoring_model);
-    parts.push(count + " occupations (3-digit NCO-2015 minor groups)");
+    if (meta.plfs_release) parts.push(meta.plfs_release);
+    if (meta.scaling_factor != null) parts.push("counts scaled x" + meta.scaling_factor.toFixed(4) + " to the 15+ population");
+    if (meta.scoring_model) parts.push("AI scores by " + meta.scoring_model);
     document.getElementById("metaLine").textContent = "Data: " + parts.join(" \u00b7 ") + ".";
+    updateCutNote();
     updateStats();
     drawGradientLegend();
     resize();

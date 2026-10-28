@@ -72,7 +72,7 @@
   "214": {
     "nco_code": "214",
     "exposure": 6,
-    "rationale": "With over 94% regular employment and high median earnings, engineering professionals in India have strong organizational infrastructure to integrate AI tools into their workflows. AI is substantially reshaping desk-based tasks such as generative design, CAD drafting, structural estimations, production scheduling, and compliance documentation. However, overall exposure is moderated because critical responsibilities—such as physical site inspections, quality audits, material testing, and field project management—still require direct human presence."
+    "rationale": "With over 94% regular employment and high median earnings, engineering professionals in India have strong organizational infrastructure to integrate AI tools into their workflows. AI is substantially reshaping desk-based tasks such as generative design, CAD drafting, structural estimations, production scheduling, and compliance documentation. However, overall exposure is moderated because critical responsibilities (such as physical site inspections, quality audits, material testing, and field project management)still require direct human presence."
   },
   "215": {
     "nco_code": "215",
@@ -112,7 +112,7 @@
   "226": {
     "nco_code": "226",
     "exposure": 3,
-    "rationale": "A large share of occupations in this group—such as dentists, physiotherapists, speech therapists, and optometrists—require direct physical, in-person clinical procedures and manual dexterity that AI cannot replicate. However, AI tools assist with administrative workflows, diagnostic imaging analysis, and personalized treatment or diet planning for dietitians and health officers. As a result, AI reshapes supplementary analytical and administrative tasks while leaving the core hands-on medical care intact."
+    "rationale": "A large share of occupations in this group (such as dentists, physiotherapists, speech therapists, and optometrists)require direct physical, in-person clinical procedures and manual dexterity that AI cannot replicate. However, AI tools assist with administrative workflows, diagnostic imaging analysis, and personalized treatment or diet planning for dietitians and health officers. As a result, AI reshapes supplementary analytical and administrative tasks while leaving the core hands-on medical care intact."
   },
   "231": {
     "nco_code": "231",
@@ -307,7 +307,7 @@
   "422": {
     "nco_code": "422",
     "exposure": 7,
-    "rationale": "Client information workers engage primarily in communication, query handling, booking management, and routine customer support—tasks directly impacted by conversational AI, automated voice agents, and chatbots. Because this group has an overwhelmingly formal workforce (93.1% regular salaried) operating in digitally structured environments, adoption barriers are low despite modest wages. However, physical in-person responsibilities for hotel receptionists and front-desk hosts prevent complete task automation across the entire group."
+    "rationale": "Client information workers engage primarily in communication, query handling, booking management, and routine customer support, tasks directly impacted by conversational AI, automated voice agents, and chatbots. Because this group has an overwhelmingly formal workforce (93.1% regular salaried) operating in digitally structured environments, adoption barriers are low despite modest wages. However, physical in-person responsibilities for hotel receptionists and front-desk hosts prevent complete task automation across the entire group."
   },
   "431": {
     "nco_code": "431",
@@ -387,7 +387,7 @@
   "541": {
     "nco_code": "541",
     "exposure": 2,
-    "rationale": "Protective service workers primarily engage in physical, in-person duties such as patrolling, guarding physical assets, maintaining public order, and responding to emergencies. While AI-driven technologies like video analytics and automated surveillance systems are increasingly used by security supervisors and police departments, the vast majority of jobs in this group—such as watchmen, security guards, and constables—require physical presence and human intervention. Given the low average wages for security personnel in India, physical manual guarding remains far more cost-effective than deploying advanced robotic or automated hardware."
+    "rationale": "Protective service workers primarily engage in physical, in-person duties such as patrolling, guarding physical assets, maintaining public order, and responding to emergencies. While AI-driven technologies like video analytics and automated surveillance systems are increasingly used by security supervisors and police departments, the vast majority of jobs in this group (such as watchmen, security guards, and constables)require physical presence and human intervention. Given the low average wages for security personnel in India, physical manual guarding remains far more cost-effective than deploying advanced robotic or automated hardware."
   },
   "611": {
     "nco_code": "611",

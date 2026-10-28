@@ -2,7 +2,11 @@
 
 Reads data/occupations_in.csv, data/nco/nco_descriptions.json and
 data/scores_in.json. Writes site/data.json with the exact top level shape
-{"meta": {...}, "occupations": [...]}.
+{"meta": {...}, "groups": {...}, "occupations": [...]}.
+
+"groups" holds what is the same in every cut (title, division, AI score and
+rationale) once per NCO code. "occupations" holds one row per code and cut,
+and the page joins the two on nco_code.
 """
 
 import argparse
@@ -28,10 +32,12 @@ PLFS_RELEASE = "DDI-IND-NSO-PLFS-Jan2025-Dec2025"
 META_KEY = "_meta"
 SECTOR_ORDER = {"all": 0, "rural": 1, "urban": 2}
 SEX_ORDER = {"all": 0, "female": 1, "male": 2}
+AGE_ORDER = {"all": 0, "15-29": 1, "30-44": 2, "45-59": 3, "60+": 4}
 REQUIRED_COLUMNS = [
     "nco_code",
     "cut_sector",
     "cut_sex",
+    "cut_age",
     "workers",
     "sample_n",
     "female_share",
@@ -225,21 +231,28 @@ def parse_status_mix(value: Any) -> dict[str, float | None] | None:
     return cleaned
 
 
-def build_row(
+def build_group(
     code: str,
-    csv_row: dict[str, str],
     description: dict[str, Any],
     score: dict[str, Any] | None,
 ) -> dict[str, Any]:
     return {
-        "nco_code": code,
         "title": to_str(description.get("title")),
         "division": to_str(description.get("division")),
         "subdivision": to_str(description.get("subdivision")),
         # NCO 2015 aligns to ISCO 08 at the 3-digit level, so the code carries over.
         "isco_code": code,
+        "exposure_in": score.get("exposure") if score else None,
+        "exposure_in_rationale": to_str(score.get("rationale")) if score else None,
+    }
+
+
+def build_row(code: str, csv_row: dict[str, str]) -> dict[str, Any]:
+    return {
+        "nco_code": code,
         "cut_sector": to_str(csv_row.get("cut_sector")),
         "cut_sex": to_str(csv_row.get("cut_sex")),
+        "cut_age": to_str(csv_row.get("cut_age")),
         "workers": to_int(csv_row.get("workers")),
         "sample_n": to_int(csv_row.get("sample_n")),
         "female_share": to_number(csv_row.get("female_share")),
@@ -249,18 +262,20 @@ def build_row(
         "median_monthly_earnings_inr": to_int(csv_row.get("median_monthly_earnings_inr")),
         "earnings_coverage": to_number(csv_row.get("earnings_coverage")),
         "education_median": to_str(csv_row.get("education_median")),
-        "exposure_in": score.get("exposure") if score else None,
-        "exposure_in_rationale": to_str(score.get("rationale")) if score else None,
         "low_confidence": to_bool(csv_row.get("low_confidence")),
     }
 
 
-def make_cut_list(cuts: set[tuple[str, str]]) -> list[dict[str, str]]:
-    ordered = sorted(
-        cuts,
-        key=lambda cut: (SECTOR_ORDER.get(cut[0], 9), SEX_ORDER.get(cut[1], 9)),
-    )
-    return [{"cut_sector": sector, "cut_sex": sex} for sector, sex in ordered]
+def cut_key(sector: str, sex: str, age: str) -> tuple[int, int, int]:
+    return (SECTOR_ORDER.get(sector, 9), SEX_ORDER.get(sex, 9), AGE_ORDER.get(age, 9))
+
+
+def make_cut_list(cuts: set[tuple[str, str, str]]) -> list[dict[str, str]]:
+    ordered = sorted(cuts, key=lambda cut: cut_key(*cut))
+    return [
+        {"cut_sector": sector, "cut_sex": sex, "cut_age": age}
+        for sector, sex, age in ordered
+    ]
 
 
 def parse_args() -> argparse.Namespace:
@@ -292,8 +307,9 @@ def main(arguments: argparse.Namespace) -> None:
                 ". Run scripts/03_tabulate.py first."
             )
         rows: list[dict[str, Any]] = []
+        groups: dict[str, dict[str, Any]] = {}
         csv_codes: set[str] = set()
-        cuts: set[tuple[str, str]] = set()
+        cuts: set[tuple[str, str, str]] = set()
         for csv_row in reader:
             code = normalize_code(csv_row.get("nco_code"))
             if code is None:
@@ -301,11 +317,14 @@ def main(arguments: argparse.Namespace) -> None:
             csv_codes.add(code)
             sector = to_str(csv_row.get("cut_sector"))
             sex = to_str(csv_row.get("cut_sex"))
-            cuts.add((sector or "", sex or ""))
+            age = to_str(csv_row.get("cut_age"))
+            cuts.add((sector or "", sex or "", age or ""))
             description = descriptions.get(code)
             if description is None:
                 continue
-            rows.append(build_row(code, csv_row, description, scores.get(code)))
+            if code not in groups:
+                groups[code] = build_group(code, description, scores.get(code))
+            rows.append(build_row(code, csv_row))
 
     description_codes = set(descriptions)
     score_codes = set(scores)
@@ -326,8 +345,8 @@ def main(arguments: argparse.Namespace) -> None:
         (description_codes & csv_codes) - score_codes,
     )
 
-    rows.sort(key=lambda row: (row["nco_code"], SECTOR_ORDER.get(row["cut_sector"] or "", 9),
-                               SEX_ORDER.get(row["cut_sex"] or "", 9)))
+    rows.sort(key=lambda row: (row["nco_code"], *cut_key(
+        row["cut_sector"] or "", row["cut_sex"] or "", row["cut_age"] or "")))
 
     meta = {
         "survey_period": SURVEY_PERIOD,
@@ -335,10 +354,10 @@ def main(arguments: argparse.Namespace) -> None:
         "scaling_factor": scaling_factor,
         "scoring_model": scoring_model,
         "generated_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
-        "occupation_count": len({row["nco_code"] for row in rows}),
+        "occupation_count": len(groups),
         "cut_list": make_cut_list(cuts),
     }
-    payload = {"meta": meta, "occupations": rows}
+    payload = {"meta": meta, "groups": dict(sorted(groups.items())), "occupations": rows}
 
     output_path = Path(arguments.output)
     output_path.parent.mkdir(parents=True, exist_ok=True)
